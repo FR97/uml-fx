@@ -1,13 +1,13 @@
 package fr97.umlfx.javafx.scene.control.cell;
 
 /**
- * FunctionInterface to allow creation of easy convertor
+ * FunctionInterface to allow creation of easy converter
  * from string to some given type
  *
  * @param <T> given type that string should be converted to
  */
 @FunctionalInterface
-public interface CellValueConvertor<T> {
+public interface CellValueConverter<T> {
 
     /**
      * Converts string to instance of T

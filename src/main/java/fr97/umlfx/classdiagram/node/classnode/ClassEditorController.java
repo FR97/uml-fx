@@ -105,8 +105,7 @@ public class ClassEditorController implements FXMLController<ClassNode> {
                     str = str.replace("{","").replace("}", "");
                     String[] parameters = str.split(", ");
                     for(String p : parameters){
-                        System.out.println("String: " + p + " into " + Arrays.toString(p.split("=")));
-                        String[] keyToValue = p.split("=");
+                        String[] keyToValue = p.split(":");
                         if(keyToValue.length > 1)
                             map.put(keyToValue[0], keyToValue[1]);
                     }
@@ -167,7 +166,7 @@ public class ClassEditorController implements FXMLController<ClassNode> {
         HashMap<String, String> map = new HashMap<>();
         map.put("param1", "String");
         map.put("param2", "double");
-        Function newFunction = new Function("void", AccessModifier.PRIVATE, "functionName", map);
+        Function newFunction = new Function("void", AccessModifier.PUBLIC, "functionName", map);
         node.getFunctions().add(newFunction);
     }
 

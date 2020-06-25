@@ -77,22 +77,22 @@ public class Line {
 
         /*
          *                      . Point(x,y)
-         *                      \
-         *                      \ - projection line of point to line
-         *                      \
-         *                      \
+         *                      |
+         *                      | - projection line of point to line
+         *                      |
+         *                      |
          *         Start.-------.-------------------.End
-         *               \_____| P
+         *               \______| P
          *        0 < projectionDistance < 1
          *
          *
          *                      . Point(x,y)                                    . Point(x,y)
-         *                      \                                               \
-         *                      \                                               \
-         *                      \                                               \
-         *                      \                                               \
+         *                      |                                               |
+         *                      |                                               |
+         *                      |                                               |
+         *                      |                                               |
          *             ---------.----Start.--------------------------.End--------.
-         *                   P1 \________|                        P2 \__________|
+         *                   P1 \_________|                        P2 \__________|
          *              projectionDistance1 < 0                      projectionDistance1 > 1
          *
          *              Nekada projekcija tacke na pravu pada van datog segmenta prave

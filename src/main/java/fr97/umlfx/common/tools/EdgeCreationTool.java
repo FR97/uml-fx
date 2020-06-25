@@ -55,27 +55,23 @@ public class EdgeCreationTool implements UmlTool {
 
     @Override
     public void onMouseEvent(MouseEvent event, UmlDiagram diagram) {
-        if (event.getEventType() == MouseEvent.MOUSE_CLICKED)
+        if (event.getEventType() == MouseEvent.MOUSE_CLICKED) {
             onMouseClicked(event, diagram);
-        else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
-            // System.out.println("Event source: " + event.getSource());
-            /*Optional<UmlNode> clickedNode = */
+        } else if (event.getEventType() == MouseEvent.MOUSE_PRESSED) {
             diagram.getNodes().stream()
-                    .filter(n -> n.getBounds().contains(Point.of(event.getX(), event.getY())))
-                    .findFirst()
-                    .ifPresent(node -> onMousePressedOnNode(event, diagram, node));
+                .filter(n -> n.getBounds().contains(Point.of(event.getX(), event.getY())))
+                .findFirst()
+                .ifPresent(node -> onMousePressedOnNode(event, diagram, node));
 
-        } else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED)
+        } else if (event.getEventType() == MouseEvent.MOUSE_DRAGGED) {
             onMouseDragged(event, diagram);
-        else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
+        } else if (event.getEventType() == MouseEvent.MOUSE_RELEASED) {
             diagram.getNodes().stream()
-                    .filter(n -> n.getBounds().contains(Point.of(event.getX(), event.getY())))
-                    .findFirst()
-                    .ifPresent(node -> onMouseReleasedOnNode(event, diagram, node));
+                .filter(n -> n.getBounds().contains(Point.of(event.getX(), event.getY())))
+                .findFirst()
+                .ifPresent(node -> onMouseReleasedOnNode(event, diagram, node));
             ((Pane) event.getSource()).getChildren().remove(dragLine);
         }
-
-
     }
 
     private void onMousePressedOnNode(MouseEvent event, UmlDiagram diagram, UmlNode node) {
@@ -96,7 +92,6 @@ public class EdgeCreationTool implements UmlTool {
     }
 
     private void onMouseReleasedOnNode(MouseEvent event, UmlDiagram diagram, UmlNode node) {
-        //System.out.println("Ended on node: " + node);
         headNode = node;
         UmlEdge e = edgeSupplier.apply(tailNode, headNode);
         if (e instanceof CommentEdge) {
@@ -112,8 +107,6 @@ public class EdgeCreationTool implements UmlTool {
                 diagram.getEdges().add(edgeSupplier.apply(headNode, tailNode));
             else if (!(tailNode instanceof InterfaceNode) && headNode instanceof InterfaceNode)
                 diagram.getEdges().add(edgeSupplier.apply(tailNode, headNode));
-
-            //System.out.println("Last option");
         } else if (e instanceof InheritanceEdge) {
             if (tailNode instanceof InterfaceNode && headNode instanceof InterfaceNode)
                 diagram.getEdges().add(edgeSupplier.apply(tailNode, headNode));

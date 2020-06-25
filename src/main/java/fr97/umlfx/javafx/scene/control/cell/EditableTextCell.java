@@ -6,7 +6,7 @@ import javafx.scene.control.cell.TextFieldTableCell;
 
 /**
  * Extends {@link TextFieldTableCell}, uses TextField for editing cell value,
- * allows using {@link CellValueConvertor} which makes instantiating this very easy
+ * allows using {@link CellValueConverter} which makes instantiating this very easy
  * @param <S>
  * @param <T>
  *
@@ -17,10 +17,10 @@ import javafx.scene.control.cell.TextFieldTableCell;
 public class EditableTextCell<S, T> extends TextFieldTableCell<S, T> {
 
     private TextField textField;
-    private final CellValueConvertor<T> convertor;
+    private final CellValueConverter<T> converter;
 
-    public EditableTextCell(CellValueConvertor<T> convertor) {
-        this.convertor = convertor;
+    public EditableTextCell(CellValueConverter<T> converter) {
+        this.converter = converter;
     }
 
     /**
@@ -74,11 +74,11 @@ public class EditableTextCell<S, T> extends TextFieldTableCell<S, T> {
     private void createTextField() {
         textField = new TextField(getString());
         textField.setMinWidth(this.getWidth() - this.getGraphicTextGap() * 2);
-        textField.setOnAction((e) -> commitEdit(convertor.convert(textField.getText())));
+        textField.setOnAction((e) -> commitEdit(converter.convert(textField.getText())));
         textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (!newValue) {
                 //System.out.println("Committed " + textField.getText());
-                commitEdit(convertor.convert(textField.getText()));
+                commitEdit(converter.convert(textField.getText()));
             }
         });
     }

@@ -14,7 +14,6 @@ import javafx.scene.layout.VBox;
 /**
  * Section extends {@link VBox}, it is used together with section pane
  *
- * TODO treba da se kleanupuje
  */
 public class Section extends VBox {
 

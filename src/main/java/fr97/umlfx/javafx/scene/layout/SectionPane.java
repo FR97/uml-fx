@@ -16,10 +16,7 @@ import javafx.scene.shape.Rectangle;
 import java.util.Optional;
 
 /**
- * Extends {@link StackPane} with some separates sections to make
- * it easier to represent nodes
- *
- * TODO treba da se kleanupuje
+ * Extends {@link StackPane} with separated header section and subsections list
  */
 public class SectionPane extends StackPane {
 

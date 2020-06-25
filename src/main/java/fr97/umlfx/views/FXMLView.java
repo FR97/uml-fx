@@ -14,7 +14,7 @@ import java.io.IOException;
  *
  * So if extending class is called ExampleView then it will look for a file in same directory called ExampleView.fxml
  *
- * This class enforces MVC structure, model must be given to constructor
+ * This class enforces MVC structure, model must be provided in constructor
  * and controller that implements {@link FXMLController} must be set in fxml file
  * </p>
  * @param <N> type of root node for view
@@ -40,10 +40,9 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
      */
     protected FXMLView(M model) throws IllegalStateException, IllegalArgumentException {
         ArgumentChecker.notNull(model, "model can't be null");
-        viewName = DEFAULT_VIEW_NAME;
-        loader.setLocation(getClass().getResource(viewName+FXML_SUFFIX));
-        System.out.println("View name: " + DEFAULT_VIEW_NAME);
-        load(model, viewName);
+        this.viewName = DEFAULT_VIEW_NAME;
+        loader.setLocation(getClass().getResource(this.viewName+FXML_SUFFIX));
+        load(model, this.viewName);
     }
 
     /**
@@ -56,8 +55,6 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
     protected FXMLView(M model, String viewName) throws IllegalStateException, IllegalArgumentException {
         ArgumentChecker.notNull(model, "model can't be null");
         this.viewName = viewName;
-        System.out.println("View name: " + viewName);
-        System.out.println(getClass().getResource(viewName+FXML_SUFFIX));
         loader.setLocation(getClass().getResource(viewName+FXML_SUFFIX));
         load(model, this.viewName);
     }

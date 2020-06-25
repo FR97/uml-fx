@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Theme {
 
-    public static Theme defautTheme = availableThemes().get(0);
+    public static Theme defaultTheme = availableThemes().get(0);
 
     public SimpleObjectProperty<Paint> borderColorProperty = new SimpleObjectProperty<>(Color.BLACK);
     public SimpleObjectProperty<Border> borderProperty = new SimpleObjectProperty<>(createBorder(Color.BLACK, 1));
@@ -37,7 +37,7 @@ public class Theme {
 
         Theme light = new Theme();
         Theme dark = new Theme();
-
+        dark.borderProperty.set(createBorder(Color.RED, 10));
         return Arrays.asList(light, dark);
     }
 

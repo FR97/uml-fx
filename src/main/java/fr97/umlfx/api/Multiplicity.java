@@ -9,13 +9,12 @@ import java.io.Serializable;
 
 /**
  * This class is used to represent multiplicity between elements
- * TODO klasa je istestirana, treba da se implementira prikaz samo i da se napravi editor
  */
 public class Multiplicity {
 
-    private StringProperty lowerBound = new SimpleStringProperty("0");
+    private final StringProperty lowerBound = new SimpleStringProperty("0");
 
-    private StringProperty higherBound = new SimpleStringProperty("0");
+    private final StringProperty higherBound = new SimpleStringProperty("0");
 
     public Multiplicity(){
 

@@ -4,7 +4,6 @@ import fr97.umlfx.api.UmlDiagram;
 import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.api.tool.UmlTool;
 import javafx.beans.binding.StringBinding;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.input.KeyEvent;
@@ -15,10 +14,10 @@ import java.util.function.Supplier;
 
 public class NodeCreationTool implements UmlTool {
 
-    private Supplier<UmlNode> nodeSupplier;
+    private final Supplier<UmlNode> nodeSupplier;
+    private final SimpleStringProperty name = new SimpleStringProperty();
+    private final SimpleStringProperty tooltip = new SimpleStringProperty();
 
-    private SimpleStringProperty name = new SimpleStringProperty();
-    private SimpleStringProperty tooltip = new SimpleStringProperty();
     public NodeCreationTool(Supplier<UmlNode> nodeSupplier, StringBinding name, StringBinding tooltip){
         this.nodeSupplier = nodeSupplier;
         this.name.bind(name);

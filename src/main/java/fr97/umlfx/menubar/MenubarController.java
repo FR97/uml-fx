@@ -1,6 +1,7 @@
 package fr97.umlfx.menubar;
 
 import fr97.umlfx.app.Localization;
+import fr97.umlfx.app.Theme;
 import fr97.umlfx.classdiagram.ClassDiagram;
 import fr97.umlfx.command.CommandManager;
 import fr97.umlfx.javafx.dialog.Dialogs;
@@ -145,12 +146,12 @@ public class MenubarController implements FXMLController<Menubar> {
 
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
         //TODO implement theme change
-        /*if (n != null) {
+        if (n != null) {
             if(n.getUserData().toString().equals("light"))
-                Theme.setCurrentTheme(Theme.LIGHT_THEME);
+                Theme.defaultTheme = (Theme.availableThemes().get(0));
             else
-                Theme.setCurrentTheme(Theme.DARK_THEME);
-        }*/
+                Theme.defaultTheme = (Theme.availableThemes().get(1));
+        }
     }
 
     /**

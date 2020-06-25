@@ -11,7 +11,6 @@ import javafx.scene.paint.Paint;
 /**
  * Grid to show behind diagram
  *
- * TODO treba da se ubaci iza dijagrama
  */
 public class Grid extends Region {
 

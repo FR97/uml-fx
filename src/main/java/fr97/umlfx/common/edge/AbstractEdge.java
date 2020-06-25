@@ -15,10 +15,11 @@ public abstract class AbstractEdge implements UmlEdge {
 
     private static int instanceCounter = 0;
 
+    private final String id;
+
     private final ObjectProperty<UmlNode> head = new SimpleObjectProperty<>();
     private final ObjectProperty<UmlNode> tail = new SimpleObjectProperty<>();
     private final ObjectProperty<Direction> direction = new SimpleObjectProperty<>(Direction.NONE);
-    private final String id;
     private final StringProperty label = new SimpleStringProperty("");
     private final Multiplicity headMult = new Multiplicity();
     private final Multiplicity tailMult = new Multiplicity();
@@ -99,10 +100,10 @@ public abstract class AbstractEdge implements UmlEdge {
     @Override
     public String toString() {
         return "AbstractEdge{" +
-                "head=" + head +
-                ", tail=" + tail +
-                ", direction=" + direction +
-                ", id='" + id + '\'' +
-                '}';
+            "head=" + head +
+            ", tail=" + tail +
+            ", direction=" + direction +
+            ", id='" + id + '\'' +
+            '}';
     }
 }

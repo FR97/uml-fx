@@ -1,5 +1,5 @@
 **SE211-PZ-FilipRistic2922**
 
-UmlFX is simple uml editor tool, created as project for SE211 subject.
+UmlFX is simple uml editor tool, created as project for Software Construction subject during my studies.
 
-Currently only class diagram is supported.
+At the moment only class diagram is supported.

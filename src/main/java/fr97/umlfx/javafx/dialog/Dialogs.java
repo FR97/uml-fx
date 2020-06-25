@@ -2,12 +2,9 @@ package fr97.umlfx.javafx.dialog;
 
 
 import fr97.umlfx.app.Localization;
-import fr97.umlfx.utils.ArgumentChecker;
 import javafx.scene.control.Alert;
 import javafx.scene.control.ButtonType;
 import javafx.scene.control.Dialog;
-import javafx.stage.Modality;
-import javafx.stage.Stage;
 
 import java.util.List;
 import java.util.Optional;
@@ -43,7 +40,7 @@ public final class Dialogs {
         private String title;
         private String header;
         private String message;
-        private boolean resizible;
+        private boolean resizeable;
         private Consumer<ButtonType> consumer;
         private List<ButtonType> buttons;
 
@@ -73,7 +70,7 @@ public final class Dialogs {
         }
 
         public DialogBuilder resizible(boolean resizible) {
-            this.resizible = resizible;
+            this.resizeable = resizible;
             return this;
         }
 
@@ -86,7 +83,7 @@ public final class Dialogs {
 
             Dialog<ButtonType> dialog = new Dialog<>();
 
-            dialog.setResizable(resizible);
+            dialog.setResizable(resizeable);
             dialog.getDialogPane().getButtonTypes().clear();
 
 
