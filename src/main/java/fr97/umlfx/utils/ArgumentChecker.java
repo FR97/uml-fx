@@ -17,8 +17,9 @@ public class ArgumentChecker {
      * @throws IllegalArgumentException if arg is null
      */
     public static <T> void notNull(T arg, String msg) throws IllegalArgumentException {
-        if(arg == null)
+        if(arg == null){
             throw new IllegalArgumentException(msg);
+        }
     }
 
 }
