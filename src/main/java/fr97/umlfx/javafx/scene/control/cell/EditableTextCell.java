@@ -12,7 +12,6 @@ import javafx.scene.control.cell.TextFieldTableCell;
  *
  * @author Filip
  *
- *      TODO treba da se proveri, radjeno na brzinu
  */
 public class EditableTextCell<S, T> extends TextFieldTableCell<S, T> {
 

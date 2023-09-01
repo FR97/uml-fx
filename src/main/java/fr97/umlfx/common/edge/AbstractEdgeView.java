@@ -125,7 +125,6 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
 
     /**
      * Gets called by parent when there is something to update
-     * TODO Nepotrebno za sada ali mislim da ce trebati ako se doda povezivanje koje nije samo po sredini
      */
     protected abstract void onUpdate();
 
@@ -292,14 +291,12 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
      * @param newValue not used, can be null
      */
     public void calculatePositions(Observable obs, Number oldValue, Number newValue){
-
-        //TODO podeliti na vise metoda
-
         UmlNode tailNode = edge.getTail();
         UmlNode headNode = edge.getHead();
 
         //If headNode is east of tailNode:
-        if (tailNode.getTranslateX() + tailNode.getWidth() <= headNode.getTranslateX()) { //Straight line if height difference is small
+        if (tailNode.getTranslateX() + tailNode.getWidth() <= headNode.getTranslateX()) {
+            //Straight line if height difference is small
             if(Math.abs(tailNode.getTranslateY() + (tailNode.getHeight()/2) - (headNode.getTranslateY() + (headNode.getHeight()/2))) < 0){
                 tailLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
