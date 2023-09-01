@@ -15,7 +15,7 @@ import java.util.Optional;
  */
 public class Workspace {
 
-    private ObservableList<UmlDiagram> diagrams;
+    private final ObservableList<UmlDiagram> diagrams;
 
     private final Stage stage;
 
