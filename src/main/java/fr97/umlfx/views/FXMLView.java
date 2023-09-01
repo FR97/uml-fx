@@ -23,11 +23,11 @@ import java.io.IOException;
 public abstract class FXMLView<N extends Node, M> implements View<N> {
 
     private static final String FXML_SUFFIX = ".fxml";
-    private final String DEFAULT_VIEW_NAME = getClass().getSimpleName();;
 
     private final FXMLLoader loader = new FXMLLoader();
 
-    private String viewName;
+    private final String viewName;
+
     private N root;
 
     protected FXMLController<M> controller;
@@ -40,7 +40,7 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
      */
     protected FXMLView(M model) throws IllegalStateException, IllegalArgumentException {
         ArgumentChecker.notNull(model, "model can't be null");
-        this.viewName = DEFAULT_VIEW_NAME;
+        this.viewName = getClass().getSimpleName();
         loader.setLocation(getClass().getResource(this.viewName+FXML_SUFFIX));
         load(model, this.viewName);
     }
