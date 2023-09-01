@@ -104,13 +104,13 @@ public class Line {
          *
          */
 
-        double A = getStartX() - start.getX(); // Vector: Point.x  - Line.startX
-        double B = getStartY() - start.getY(); // Vector: Point.y  - Line.starty
-        double C = getEndX() - start.getX(); // Vector: Line.endX  - Line.startX
-        double D = getEndY() - start.getX(); // Vector: Line.endY  - Line.startY
+        double a = getStartX() - start.getX(); // Vector: Point.x  - Line.startX
+        double b = getStartY() - start.getY(); // Vector: Point.y  - Line.starty
+        double c = getEndX() - start.getX(); // Vector: Line.endX  - Line.startX
+        double d = getEndY() - start.getX(); // Vector: Line.endY  - Line.startY
 
-        double scalar = A * C + B * D; // skalarni proizvod vektora
-        double len_sqr = C * C + D * D; // duzina linije na kvadrat
+        double scalar = a * c + b * d; // skalarni proizvod vektora
+        double len_sqr = c * c + d * d; // duzina linije na kvadrat
         double projectionDistance = -1; // Distanca od pocetne tacke linije do projekcije
         if(len_sqr != 0) // ako linija ima duzinu nula tj. linija je u stvari tacka
             projectionDistance = scalar / len_sqr;
@@ -126,8 +126,8 @@ public class Line {
             xx = getEndX();
             yy = getEndY();
         } else {
-            xx = getStartX() + projectionDistance * C;
-            yy = getStartY() + projectionDistance * D;
+            xx = getStartX() + projectionDistance * c;
+            yy = getStartY() + projectionDistance * d;
         }
 
         // Formula za distancu izmedju dve date tacke
