@@ -24,6 +24,7 @@ import java.util.stream.Collectors;
  */
 public class ClassNode extends AbstractNode implements UmlNamedNode {
 
+    private static final String COPY_POSTFIX = "_Copy";
     private final StringProperty name = new SimpleStringProperty(getId());
 
     private final ObjectProperty<AccessModifier> accessModifier = new SimpleObjectProperty<>(AccessModifier.PUBLIC);
@@ -71,7 +72,7 @@ public class ClassNode extends AbstractNode implements UmlNamedNode {
     @Override
     public ClassNode copy() {
 
-        ClassNode copy = new ClassNode(name.get());
+        ClassNode copy = new ClassNode(name.get() + COPY_POSTFIX);
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());
