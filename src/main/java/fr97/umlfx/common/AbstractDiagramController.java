@@ -13,6 +13,8 @@ import fr97.umlfx.common.node.NodeController;
 import fr97.umlfx.common.node.NodeEditorView;
 import fr97.umlfx.math.geometry.Point;
 import fr97.umlfx.workspace.toolbar.Toolbar;
+import javafx.beans.property.ObjectProperty;
+import javafx.beans.property.SimpleObjectProperty;
 import javafx.collections.ListChangeListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
@@ -51,6 +53,8 @@ public abstract class AbstractDiagramController {
 
     protected boolean nodeSelected = false;
 
+    protected ObjectProperty<UmlNode> copiedElement = new SimpleObjectProperty<>();
+
     protected CommandManager commandManager;
 
     private NodeController nodeController;
@@ -58,6 +62,7 @@ public abstract class AbstractDiagramController {
     protected Toolbar toolbar;
 
     protected Action currentAction = Action.NO_ACTION;
+
 
     enum Action {
         NO_ACTION, SELECTING, DRAGGING_NODE, DRAGGING_EDGE, RESIZING, MOVING, DRAWING, CREATING, CONTEXT_MENU
@@ -92,7 +97,6 @@ public abstract class AbstractDiagramController {
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (event.getClickCount() == 2) {
                     System.out.println("Double Click");
-
                 } else {
                     diagram.getEdges().forEach(e -> e.selectedProperty().set(false));
                     toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram));
@@ -170,17 +174,19 @@ public abstract class AbstractDiagramController {
 
         itemEdit.setOnAction(this::editSelected);
         itemDelete.setOnAction(this::deleteSelected);
+        itemCopy.setOnAction(this::copySelected);
+        itemPaste.setOnAction(this::pasteCopied);
 
         itemTakeSnapshot.setOnAction(event -> {
-            try{
-                WritableImage image =  diagramView.snapshot(
+            try {
+                WritableImage image = diagramView.snapshot(
                         new SnapshotParameters(),
                         new WritableImage((int) diagramView.getWidth(), (int) diagramView.getHeight()));
                 FileChooser fileChooser = new FileChooser();
                 fileChooser.setTitle("Save Image");
                 fileChooser.getExtensionFilters().add(new FileChooser.ExtensionFilter("PNG Image", "*.png"));
                 File output = fileChooser.showSaveDialog(getStage());
-                if(output != null) {
+                if (output != null) {
                     ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", output);
                 }
             } catch (IOException ex) {
@@ -215,6 +221,26 @@ public abstract class AbstractDiagramController {
             }
             contextMenu.show(diagramView, event.getScreenX(), event.getScreenY());
         });
+    }
+
+    private void copySelected(ActionEvent actionEvent) {
+        Optional<UmlNode> selectedNode = diagram.getNodes().stream()
+                .filter(n -> n.selectedProperty().get())
+                .findFirst();
+        if (selectedNode.isPresent()) {
+            copiedElement.set(selectedNode.get());
+        } else {
+            copiedElement.set(null);
+        }
+    }
+
+    private void pasteCopied(ActionEvent actionEvent) {
+        if (copiedElement.get() != null) {
+            UmlNode node = copiedElement.get().copy();
+            node.setTranslateX(node.getTranslateX() + 10);
+            node.setTranslateY(node.getTranslateY() + 10);
+            addNode(node);
+        }
     }
 
     /**

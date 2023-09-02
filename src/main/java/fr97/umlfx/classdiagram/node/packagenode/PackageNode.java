@@ -19,13 +19,14 @@ import java.util.Set;
  * PackageNode implementation of {@link UmlNode}, this node is also an {@link UmlParentNode}
  * meaning that it can be container for other nodes
  *
- * TODO treba da se napravi view za ovo cudo, prolazi testove.
  */
 public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParentNode {
 
-    private StringProperty packageName = new SimpleStringProperty(getId());
-    private Set<Class<? extends UmlNode>> acceptedNodes = new HashSet<>(Arrays.asList(ClassNode.class, PackageNode.class));
-    private ObservableList<UmlNode> children = FXCollections.observableArrayList();
+    private static final String COPY_POSTFIX = "_Copy";
+
+    private final StringProperty packageName = new SimpleStringProperty(getId());
+    private final Set<Class<? extends UmlNode>> acceptedNodes = new HashSet<>(Arrays.asList(ClassNode.class, PackageNode.class));
+    private final ObservableList<UmlNode> children = FXCollections.observableArrayList();
 
     public PackageNode(String name) {
         if (name != null)
@@ -39,7 +40,7 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
 
     @Override
     public PackageNode copy() {
-        PackageNode copy = new PackageNode(getName());
+        PackageNode copy = new PackageNode(getName()+COPY_POSTFIX);
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());

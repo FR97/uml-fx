@@ -8,7 +8,9 @@ import javafx.beans.property.StringProperty;
 
 public class CommentNode extends AbstractNode {
 
-    private StringProperty text = new SimpleStringProperty();
+    private static final String COPY_POSTFIX = "_Copy";
+
+    private final StringProperty text = new SimpleStringProperty();
 
     public CommentNode(){
         this("");
@@ -36,7 +38,7 @@ public class CommentNode extends AbstractNode {
     @Override
     public CommentNode copy() {
 
-        CommentNode copy = new CommentNode(getText());
+        CommentNode copy = new CommentNode(getText()  + COPY_POSTFIX);
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());
