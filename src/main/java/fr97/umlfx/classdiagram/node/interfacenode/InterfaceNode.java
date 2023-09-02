@@ -19,6 +19,8 @@ import javafx.collections.ObservableList;
  */
 public class InterfaceNode extends AbstractNode implements UmlNamedNode {
 
+    private static final String COPY_POSTFIX = "_Copy";
+
     private final StringProperty name = new SimpleStringProperty(getId());
 
     private final ObjectProperty<AccessModifier> accessModifier = new SimpleObjectProperty<>(AccessModifier.PUBLIC);
@@ -26,17 +28,16 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
     private final ObservableList<Function> functions = FXCollections.observableArrayList();
     private final ObjectProperty<Stereotype> stereotype = new SimpleObjectProperty<>(Stereotype.INTERFACE);
 
-    public InterfaceNode(){
+    public InterfaceNode() {
 
     }
 
-    public InterfaceNode(String name){
-        if(name != null)
+    public InterfaceNode(String name) {
+        if (name != null)
             this.name.set(name);
     }
 
     /**
-     *
      * {@inheritDoc}
      */
     @Override
@@ -44,19 +45,19 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
         return name;
     }
 
-    public ObservableList<Function> getFunctions(){
+    public ObservableList<Function> getFunctions() {
         return functions;
     }
 
-    public boolean addMethod(Function function){
+    public boolean addMethod(Function function) {
         return functions.add(function);
     }
 
-    public boolean hasMethod(Function function){
+    public boolean hasMethod(Function function) {
         return functions.contains(function);
     }
 
-    public boolean removeMethod(Function function){
+    public boolean removeMethod(Function function) {
         return functions.remove(function);
     }
 
@@ -79,7 +80,7 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
     @Override
     public InterfaceNode copy() {
 
-        InterfaceNode copy = new InterfaceNode(name.get());
+        InterfaceNode copy = new InterfaceNode(name.get() + COPY_POSTFIX);
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());

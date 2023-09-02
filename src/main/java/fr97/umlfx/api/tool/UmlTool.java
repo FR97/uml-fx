@@ -30,7 +30,6 @@ public interface UmlTool {
     void onMouseEvent(MouseEvent event, UmlDiagram diagram);
 
     /**
-     * TODO trenutno nista ne radi, treba da omoguci koriscenje precica
      * @param event KeyEvent
      * @param diagram target {@link UmlDiagram}
      */
