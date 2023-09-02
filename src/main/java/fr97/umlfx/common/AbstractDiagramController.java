@@ -97,7 +97,6 @@ public abstract class AbstractDiagramController {
             if (event.getButton() == MouseButton.PRIMARY) {
                 if (event.getClickCount() == 2) {
                     System.out.println("Double Click");
-
                 } else {
                     diagram.getEdges().forEach(e -> e.selectedProperty().set(false));
                     toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram));
@@ -176,6 +175,7 @@ public abstract class AbstractDiagramController {
         itemEdit.setOnAction(this::editSelected);
         itemDelete.setOnAction(this::deleteSelected);
         itemCopy.setOnAction(this::copySelected);
+        itemPaste.setOnAction(this::pasteCopied);
 
         itemTakeSnapshot.setOnAction(event -> {
             try {
