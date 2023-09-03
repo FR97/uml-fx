@@ -11,6 +11,7 @@ import fr97.umlfx.classdiagram.edge.inheritance.InheritanceEdge;
 import fr97.umlfx.classdiagram.edge.realization.RealizationEdge;
 import fr97.umlfx.classdiagram.node.classnode.ClassNode;
 import fr97.umlfx.classdiagram.node.interfacenode.InterfaceNode;
+import fr97.umlfx.classdiagram.node.packagenode.PackageNode;
 import fr97.umlfx.common.AbstractDiagram;
 import fr97.umlfx.common.edge.comment.CommentEdge;
 import fr97.umlfx.common.node.comment.CommentNode;
@@ -27,47 +28,51 @@ import java.util.*;
 public class ClassDiagram extends AbstractDiagram {
 
     private static final List<UmlTool> tools = new ArrayList<>(Arrays.asList(
-        new SelectionTool(),
-        new MoveTool(),
-        new NodeCreationTool(ClassNode::new,
-            Localization.createStringBinding("classdiagram.tool.name.class"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.class")
-        ),
-        new NodeCreationTool(InterfaceNode::new,
-            Localization.createStringBinding("classdiagram.tool.name.interface"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.interface")
-        ),
-        new EdgeCreationTool(DependancyEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.dependency"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.dependency")
-        ),
-        new EdgeCreationTool(AssociationEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.association"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.association")
-        ),
-        new EdgeCreationTool(AggregationEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.aggregation"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.aggregation")
-        ),
-        new EdgeCreationTool(CompositionEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.composition"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.composition")
-        ),
-        new EdgeCreationTool(InheritanceEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.inheritance"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.inheritance")
-        ),
-        new EdgeCreationTool(RealizationEdge::new,
-            Localization.createStringBinding("classdiagram.tool.name.realization"),
-            Localization.createStringBinding("classdiagram.tool.tooltip.realization")
-        ),
-        new NodeCreationTool(CommentNode::new,
-            Localization.createStringBinding("common.tool.name.commentnode"),
-            Localization.createStringBinding("common.tool.tooltip.commentnode")
-        ),
-        new EdgeCreationTool(CommentEdge::new,
-            Localization.createStringBinding("common.tool.name.commentedge"),
-            Localization.createStringBinding("common.tool.tooltip.commentedge"))
+            new SelectionTool(),
+            new MoveTool(),
+            new NodeCreationTool(ClassNode::new,
+                    Localization.createStringBinding("classdiagram.tool.name.class"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.class")
+            ),
+            new NodeCreationTool(InterfaceNode::new,
+                    Localization.createStringBinding("classdiagram.tool.name.interface"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.interface")
+            ),
+            new NodeCreationTool(PackageNode::new,
+                    Localization.createStringBinding("classdiagram.tool.name.package"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.package")
+            ),
+            new EdgeCreationTool(DependancyEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.dependency"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.dependency")
+            ),
+            new EdgeCreationTool(AssociationEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.association"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.association")
+            ),
+            new EdgeCreationTool(AggregationEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.aggregation"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.aggregation")
+            ),
+            new EdgeCreationTool(CompositionEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.composition"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.composition")
+            ),
+            new EdgeCreationTool(InheritanceEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.inheritance"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.inheritance")
+            ),
+            new EdgeCreationTool(RealizationEdge::new,
+                    Localization.createStringBinding("classdiagram.tool.name.realization"),
+                    Localization.createStringBinding("classdiagram.tool.tooltip.realization")
+            ),
+            new NodeCreationTool(CommentNode::new,
+                    Localization.createStringBinding("common.tool.name.commentnode"),
+                    Localization.createStringBinding("common.tool.tooltip.commentnode")
+            ),
+            new EdgeCreationTool(CommentEdge::new,
+                    Localization.createStringBinding("common.tool.name.commentedge"),
+                    Localization.createStringBinding("common.tool.tooltip.commentedge"))
     ));
 
     /**
