@@ -8,6 +8,7 @@ import fr97.umlfx.classdiagram.node.classnode.ClassNodeView;
 import fr97.umlfx.classdiagram.node.interfacenode.InterfaceNode;
 import fr97.umlfx.classdiagram.node.interfacenode.InterfaceNodeView;
 import fr97.umlfx.classdiagram.node.packagenode.PackageNode;
+import fr97.umlfx.classdiagram.node.packagenode.PackageNodeView;
 import fr97.umlfx.common.node.comment.CommentNode;
 import fr97.umlfx.common.node.comment.CommentNodeView;
 import fr97.umlfx.math.geometry.Point;
@@ -54,7 +55,7 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
         } else if (node instanceof InterfaceNode) {
             return new InterfaceNodeView((InterfaceNode) node);
         } else if (node instanceof PackageNode) {
-
+            return new PackageNodeView((PackageNode) node);
         } else if(node instanceof CommentNode) {
             return new CommentNodeView((CommentNode)node);
         }
