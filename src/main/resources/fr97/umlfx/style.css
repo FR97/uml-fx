@@ -9,6 +9,14 @@
     -fx-background-radius: 0 0 0 0;
 }
 
+.package-pane {
+    -fx-background-color: #0e5b9d;
+    -fx-background-radius: 15 15 0 15;
+    -fx-border-radius: 15 15 0 15;
+    -fx-border-color: black;
+    -fx-border-width: 1;
+}
+
 .comment-stack {
     -fx-background-color: #ffa10b;
     -fx-background-radius: 15 15 0 15;
