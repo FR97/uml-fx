@@ -22,8 +22,6 @@ import java.util.Set;
  */
 public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParentNode {
 
-    private static final String COPY_POSTFIX = "_Copy";
-
     private final StringProperty packageName = new SimpleStringProperty(getId());
     private final Set<Class<? extends UmlNode>> acceptedNodes = new HashSet<>(Arrays.asList(ClassNode.class, PackageNode.class));
     private final ObservableList<UmlNode> children = FXCollections.observableArrayList();
@@ -40,7 +38,7 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
 
     @Override
     public PackageNode copy() {
-        PackageNode copy = new PackageNode(getName()+COPY_POSTFIX);
+        PackageNode copy = new PackageNode(getName());
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());

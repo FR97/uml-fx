@@ -19,8 +19,6 @@ import javafx.collections.ObservableList;
  */
 public class InterfaceNode extends AbstractNode implements UmlNamedNode {
 
-    private static final String COPY_POSTFIX = "_Copy";
-
     private final StringProperty name = new SimpleStringProperty(getId());
 
     private final ObjectProperty<AccessModifier> accessModifier = new SimpleObjectProperty<>(AccessModifier.PUBLIC);
@@ -80,7 +78,7 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
     @Override
     public InterfaceNode copy() {
 
-        InterfaceNode copy = new InterfaceNode(name.get() + COPY_POSTFIX);
+        InterfaceNode copy = new InterfaceNode(name.get());
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());
