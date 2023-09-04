@@ -24,7 +24,10 @@ import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
 
-
+/**
+ * Abstract implementation of {@link UmlNodeView} that provides basic functionality
+ * for all node views
+ */
 public abstract class AbstractNodeView extends Group implements UmlNodeView {
 
     private static int objectCount = 0;
