@@ -34,16 +34,18 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
     private final ObservableList<UmlNode> children = FXCollections.observableArrayList();
 
     public PackageNode() {
-
+        initCustomSize();
     }
 
     public PackageNode(String name) {
         if (name != null)
             this.name.set(name);
+        initCustomSize();
+    }
 
-        setWidth(400);
-
-        setWidth(400);
+    public void initCustomSize(){
+        setWidth(300);
+        setHeight(200);
     }
 
     @Override
