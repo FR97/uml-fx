@@ -29,6 +29,21 @@ public class PackageNodeView extends AbstractNodeView {
         sectionPane.maxWidthProperty().bind(node.widthProperty());
         sectionPane.prefHeightProperty().bind(node.heightProperty());
         sectionPane.maxHeightProperty().bind(node.heightProperty());
+
+        sectionPane.setOnMouseEntered(e -> {
+            System.out.println("Type: " + e.getEventType());
+            System.out.println("Source: " + e.getSource());
+            System.out.println("Source: " + e.getSource().getClass());
+        });
+
+        sectionPane.setOnMouseDragReleased(e -> {
+            System.out.println("Source: " + e.getSource());
+            System.out.println("Source: " + e.getSource().getClass());
+            if (e.getSource() instanceof AbstractNodeView view) {
+                section.getChildren().add(view);
+                node.getChildren().add(view.getNode());
+            }
+        });
     }
 
     @Override

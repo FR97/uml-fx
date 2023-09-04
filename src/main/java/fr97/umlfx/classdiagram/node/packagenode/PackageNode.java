@@ -25,7 +25,7 @@ import java.util.Set;
  */
 public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParentNode {
 
-    private final StringProperty packageName = new SimpleStringProperty(getId());
+    private final StringProperty name = new SimpleStringProperty(getId());
 
     private final ObjectProperty<Stereotype> stereotype = new SimpleObjectProperty<>(Stereotype.PACKAGE);
     private final Set<Class<? extends UmlNode>> acceptedNodes = new HashSet<>(Arrays.asList(ClassNode.class, InterfaceNode.class, PackageNode.class));
@@ -39,12 +39,16 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
 
     public PackageNode(String name) {
         if (name != null)
-            packageName.set(name);
+            this.name.set(name);
+
+        setWidth(400);
+
+        setWidth(400);
     }
 
     @Override
     public StringProperty nameProperty() {
-        return packageName;
+        return name;
     }
 
     @Override
@@ -85,10 +89,10 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
     }
 
     void setStereoType(Stereotype stereotype) {
-        this.stereotype.set(stereotype);
-    }
+        if (!acceptedStereotypes.contains(stereotype)){
+            throw new IllegalArgumentException("PackageNode can only have Stereotype PACKAGE or MODULE");
+        }
 
-    public Set<Stereotype> getAcceptedStereotypes() {
-        return acceptedStereotypes;
+        this.stereotype.set(stereotype);
     }
 }
