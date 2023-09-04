@@ -18,18 +18,16 @@ import javafx.beans.property.DoubleProperty;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleObjectProperty;
-import javafx.scene.Cursor;
 import javafx.scene.Group;
-import javafx.scene.Node;
-import javafx.scene.Parent;
 import javafx.scene.layout.Region;
-import javafx.scene.layout.StackPane;
 import javafx.scene.paint.Color;
 import javafx.scene.paint.Paint;
 import javafx.scene.shape.Line;
-import javafx.scene.shape.Rectangle;
 
-
+/**
+ * Abstract implementation of {@link UmlNodeView} that provides basic functionality
+ * for all node views
+ */
 public abstract class AbstractNodeView extends Group implements UmlNodeView {
 
     private static int objectCount = 0;
@@ -44,9 +42,10 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
     /**
      * Factory method that provides correct implementation of AbstactNodeView
      * based on given node
+     *
      * @param node given node
-     * @throws IllegalArgumentException if node is null or there isn't view for such node
      * @return AbstractNodeView that corresponds to given node
+     * @throws IllegalArgumentException if node is null or there isn't view for such node
      */
     public static AbstractNodeView of(UmlNode node) throws IllegalArgumentException {
         ArgumentChecker.notNull(node, "node can't be null");
@@ -56,8 +55,8 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
             return new InterfaceNodeView((InterfaceNode) node);
         } else if (node instanceof PackageNode) {
             return new PackageNodeView((PackageNode) node);
-        } else if(node instanceof CommentNode) {
-            return new CommentNodeView((CommentNode)node);
+        } else if (node instanceof CommentNode) {
+            return new CommentNodeView((CommentNode) node);
         }
 
         throw new IllegalArgumentException("this uml node doesn't have supporting view");
@@ -85,13 +84,13 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
         startX.set(node.getStartX());
         startY.set(node.getStartY());
 
-        node.selectedProperty().addListener((obs, oldValue, newValue)->{
-            if(oldValue != newValue)
+        node.selectedProperty().addListener((obs, oldValue, newValue) -> {
+            if (oldValue != newValue)
                 setSelected(newValue);
         });
     }
 
-    protected void createResizeLines(Region region){
+    protected void createResizeLines(Region region) {
 
         Line shortHandleLine = new Line();
         Line longHandleLine = new Line();
@@ -112,7 +111,7 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
      * {@inheritDoc}
      */
     @Override
-    public UmlNode getNode(){
+    public UmlNode getNode() {
         return node;
     }
 
@@ -163,7 +162,8 @@ public abstract class AbstractNodeView extends Group implements UmlNodeView {
     public boolean contains(Point point) {
         int x = point.getX();
         int y = point.getY();
-        return (x >= getTranslateX() && x <= getTranslateX() + width.get() && y >= getTranslateY() && y <= getTranslateY() + height.get());
+        return (x >= getTranslateX() && x <= getTranslateX() + width.get()
+                && y >= getTranslateY() && y <= getTranslateY() + height.get());
     }
 
 }

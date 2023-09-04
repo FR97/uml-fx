@@ -40,6 +40,7 @@ public class NodeCreationTool implements UmlTool {
 
         if(event.getEventType() == MouseEvent.MOUSE_CLICKED && event.getButton() == MouseButton.PRIMARY){
             UmlNode n = nodeSupplier.get();
+            System.out.println("Node created: " + n);
             n.setTranslateX(event.getX());
             n.setTranslateY(event.getY());
             diagram.getNodes().add(n);
