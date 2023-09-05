@@ -73,6 +73,22 @@ public class PackageNode extends AbstractNode implements UmlNamedNode, UmlParent
     }
 
     @Override
+    public void setTranslateX(double x) {
+        super.setTranslateX(x);
+        for(UmlNode child : children){
+            child.setTranslateX(Math.abs(getTranslateX()-child.getTranslateX())+x);
+        }
+    }
+
+    @Override
+    public void setTranslateY(double y) {
+        super.setTranslateY(y);
+        for(UmlNode child : children){
+            child.setTranslateY(Math.abs(getTranslateY()-child.getTranslateY())+y);
+        }
+    }
+
+    @Override
     public ObservableList<UmlNode> getChildren() {
         return children;
     }
