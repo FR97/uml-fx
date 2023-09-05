@@ -85,7 +85,7 @@ public class MoveTool implements UmlTool {
         if (movingNode != null) {
             movingNode.setTranslateX(movingCopy.getTranslateX());
             movingNode.setTranslateY(movingCopy.getTranslateY());
-            // TODO Mozda da se napravi da resajzuje tokom pomeranja a ne na kraju
+
             fr97.umlfx.math.geometry.Rectangle rect = fr97.umlfx.math.geometry.Rectangle.of(0,0,0,0);
             for(UmlNode n : diagram.getNodes())
                 rect = rect.add(n.getBounds());
