@@ -80,7 +80,6 @@ public class EdgeCreationTool implements UmlTool {
         dragLine.setEndX(event.getX());
         dragLine.setEndY(event.getY());
         ((Pane) event.getSource()).getChildren().add(dragLine);
-        //System.out.println("Clicked on node: " + node);
         tailNode = node;
 
     }
@@ -100,7 +99,6 @@ public class EdgeCreationTool implements UmlTool {
             else if (tailNode instanceof CommentNode)
                 diagram.getEdges().add(edgeSupplier.apply(headNode, tailNode));
         } else if (headNode instanceof CommentNode || tailNode instanceof CommentNode) {
-            // System.out.println("Won't connect");
             return;
         } else if (e instanceof RealizationEdge) {
             if (tailNode instanceof InterfaceNode && !(headNode instanceof InterfaceNode))
