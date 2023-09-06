@@ -8,7 +8,7 @@ import fr97.umlfx.common.AbstractDiagramView;
 import fr97.umlfx.workspace.toolbar.Toolbar;
 
 /**
- * TODO da se prebaci deo koda iz AbstractDiagramController
+ * Controller for class diagram
  */
 public class ClassDiagramController extends AbstractDiagramController {
 

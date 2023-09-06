@@ -12,7 +12,6 @@ import java.util.Set;
  *
  * Represents node that can contain children, for example you can put different nodes in package node
  *
- * TODO trenutno nima nijedna implementacija, testovi pokazuju da radi, treba da vidim kako da implementiram gui
  */
 public interface UmlParentNode extends UmlNode {
 

@@ -20,7 +20,6 @@ import static javafx.scene.control.ButtonBar.ButtonData;
  *
  * @see Dialog
  *
- * TODO moze da se prosiri funkcionalnost
  */
 public final class Dialogs {
 

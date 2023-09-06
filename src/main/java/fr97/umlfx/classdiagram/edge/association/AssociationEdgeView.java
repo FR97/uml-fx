@@ -7,6 +7,8 @@ import javafx.scene.shape.Line;
 
 public class AssociationEdgeView extends AbstractEdgeView {
 
+    private static final double ARROW_ANGLE = Math.toRadians(30);
+
     public AssociationEdgeView(AssociationEdge edge) {
         super(edge);
 
@@ -21,13 +23,12 @@ public class AssociationEdgeView extends AbstractEdgeView {
     @Override
     protected Group createShape(double startX, double startY, double endX, double endY) {
         Group group = new Group();
-        // ugao u odnosu na glavnu liniju
-        double phi = Math.toRadians(30);
+
         int length = 15;
         double dy = startY - endY;
         double dx = startX - endX;
         double theta = Math.atan2(dy, dx);
-        double x, y, rho = theta + phi;
+        double x, y, rho = theta + ARROW_ANGLE;
 
         for (int j = 0; j < 2; j++) {
             x = startX - length * Math.cos(rho);
@@ -38,12 +39,9 @@ public class AssociationEdgeView extends AbstractEdgeView {
             if (super.isSelected())
                 arrowLine.setStroke(Color.RED);
             group.getChildren().add(arrowLine);
-            rho = theta - phi;
+            rho = theta - ARROW_ANGLE;
         }
-        /*
-            TODO Da se nadje bolji nacin
-            Ovo je mnogo lose ali mora se setuje da znam koji se group brise kad je update
-        */
+
         group.setUserData("shape");
         return group;
 
