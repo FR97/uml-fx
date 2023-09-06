@@ -12,6 +12,7 @@ import java.util.List;
 
 public class AggregationEdgeView extends AbstractEdgeView {
 
+    private static final double ARROW_ANGLE = Math.toRadians(40);
 
     protected final List<Line> shapeLines = new ArrayList<>();
 
@@ -34,14 +35,12 @@ public class AggregationEdgeView extends AbstractEdgeView {
      */
     @Override
     protected Group createShape(double startX, double startY, double endX, double endY) {
-        //System.out.println("Creating shape for " + startX + ", "+ startY + ", "+ endX + ", "+ endY);
         Group group = new Group();
-        double phi = Math.toRadians(40);
         int barb = 14;
         double dy = startY - endY;
         double dx = startX - endX;
         double theta = Math.atan2(dy, dx);
-        double x, y, rho = theta + phi;
+        double x, y, rho = theta + ARROW_ANGLE;
 
         double[] xs = new double[2];
         double[] ys = new double[2];
@@ -53,7 +52,7 @@ public class AggregationEdgeView extends AbstractEdgeView {
             y = startY - barb * Math.sin(rho);
             xs[j] = x;
             ys[j] = y;
-            rho = theta - phi;
+            rho = theta - ARROW_ANGLE;
         }
 
         Polygon background = new Polygon();
@@ -67,10 +66,7 @@ public class AggregationEdgeView extends AbstractEdgeView {
         Line line2 = new Line(startX, startY, xs[1], ys[1]);
         Line line3 = new Line(xs[0], ys[0], x4, y4);
         Line line4 = new Line(xs[1], ys[1], x4, y4);
-        /*line1.setStrokeWidth(1);
-        line2.setStrokeWidth(1);
-        line3.setStrokeWidth(1);
-        line4.setStrokeWidth(1);*/
+
         group.getChildren().addAll(background, line1, line2, line3, line4);
         shapeLines.addAll(Arrays.asList(line1, line2, line3, line4));
         if (super.isSelected())
