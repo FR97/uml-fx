@@ -27,7 +27,6 @@ public class AggregationEdgeView extends AbstractEdgeView {
     @Override
     protected void onUpdate() {
         //System.out.println("Updated");
-        //TODO nije potrebno za sad, mislim da ce trebati
     }
 
     /**
