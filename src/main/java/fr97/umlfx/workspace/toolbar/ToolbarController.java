@@ -1,14 +1,11 @@
 package fr97.umlfx.workspace.toolbar;
 
 import fr97.umlfx.api.tool.UmlTool;
-import fr97.umlfx.app.Localization;
-import fr97.umlfx.app.Theme;
 import fr97.umlfx.views.FXMLController;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ToolBar;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.StackPane;
 
 import java.net.URL;

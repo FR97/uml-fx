@@ -40,7 +40,6 @@ public class Section extends VBox {
         ArgumentChecker.notNull(name, "name can't be null");
 
         this.name = name;
-        //borderProperty().bind(Theme.defautTheme.borderProperty);
         setAlignment(Pos.TOP_LEFT);
         setPadding(new Insets(5, 5, 5, 5));
 
