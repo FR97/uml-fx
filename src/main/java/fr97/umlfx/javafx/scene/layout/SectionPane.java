@@ -37,7 +37,6 @@ public class SectionPane extends StackPane {
         background.heightProperty().bind(this.prefHeightProperty());
 
         background.setStrokeWidth(1);
-        //background.setFill(Theme.defautTheme.nodeBackgroundProperty.get());
         background.setStroke(Color.BLACK);
         headerSection = new HeaderSection(text);
 
@@ -84,10 +83,8 @@ public class SectionPane extends StackPane {
 
     public void setSelected(boolean selected) {
         if (selected) {
-            //System.out.println("Selected");
             background.setStroke(Color.RED);
         } else {
-            //System.out.println("Deselected");
             background.setStroke(Color.BLACK);
         }
     }
