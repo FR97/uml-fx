@@ -70,8 +70,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initializing Menubar Controller");
-
         initLocalizationBindings();
 
         toggleLanguage.selectedToggleProperty().addListener(this::toggleLangListener);
