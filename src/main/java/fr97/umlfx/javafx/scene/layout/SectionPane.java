@@ -1,6 +1,5 @@
 package fr97.umlfx.javafx.scene.layout;
 
-import fr97.umlfx.app.Theme;
 import fr97.umlfx.javafx.scene.layout.section.HeaderSection;
 import fr97.umlfx.javafx.scene.layout.section.Section;
 import javafx.beans.property.ObjectProperty;
