@@ -70,8 +70,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initializing Menubar Controller");
-
         initLocalizationBindings();
 
         toggleLanguage.selectedToggleProperty().addListener(this::toggleLangListener);
@@ -102,7 +100,6 @@ public class MenubarController implements FXMLController<Menubar> {
     @FXML
     void createNewDiagram() {
         menubarModel.getDiagrams().add(new ClassDiagram());
-        //System.out.println("New diagram added, all diagrams: " + menubarModel.getDiagrams());
     }
 
     /**
@@ -111,8 +108,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @FXML
     void undo() {
-        //TODO povezati sve sa command managerom kako bi radio undo/redo
-        System.out.println("UNDO COMMAND");
         menubarModel.getCommandManager().undo();
     }
 
@@ -121,7 +116,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @FXML
     void redo() {
-        System.out.println("REDO COMMAND");
         menubarModel.getCommandManager().redo();
     }
 
@@ -145,7 +139,6 @@ public class MenubarController implements FXMLController<Menubar> {
 
 
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
-        //TODO implement theme change
         if (n != null) {
             if(n.getUserData().toString().equals("light"))
                 Theme.defaultTheme = (Theme.availableThemes().get(0));
