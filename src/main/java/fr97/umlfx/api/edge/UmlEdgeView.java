@@ -1,6 +1,5 @@
 package fr97.umlfx.api.edge;
 
-import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.math.geometry.Point;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.DoubleProperty;
