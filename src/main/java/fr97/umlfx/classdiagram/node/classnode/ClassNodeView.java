@@ -1,6 +1,5 @@
 package fr97.umlfx.classdiagram.node.classnode;
 
-import fr97.umlfx.common.AccessModifier;
 import fr97.umlfx.common.Field;
 import fr97.umlfx.common.Function;
 import fr97.umlfx.common.node.AbstractNodeView;
@@ -8,12 +7,7 @@ import fr97.umlfx.javafx.scene.layout.SectionPane;
 import fr97.umlfx.javafx.scene.layout.section.Section;
 import javafx.collections.ListChangeListener;
 import javafx.geometry.Bounds;
-import javafx.scene.Node;
 import javafx.scene.control.Label;
-import javafx.scene.layout.StackPane;
-import javafx.scene.shape.Line;
-
-import java.util.HashMap;
 
 
 /**
