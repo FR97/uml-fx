@@ -4,6 +4,7 @@ import fr97.umlfx.api.UmlDiagram;
 import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.api.node.UmlParentNode;
 import fr97.umlfx.api.tool.UmlTool;
+import fr97.umlfx.command.NewNodeCommand;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -43,6 +44,11 @@ public class NodeCreationTool implements UmlTool {
             UmlNode n = nodeSupplier.get();
             n.setTranslateX(event.getX());
             n.setTranslateY(event.getY());
+
+            NewNodeCommand command = new NewNodeCommand(n, diagram);
+
+            diagram.getCommandManager().execute(command);
+
             if (diagram.addNode(n)) {
                 assignToParentIfInsideParent(diagram, n);
             }
