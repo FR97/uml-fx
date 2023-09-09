@@ -4,13 +4,11 @@ package fr97.umlfx.common;
 import fr97.umlfx.api.UmlDiagram;
 import fr97.umlfx.api.edge.UmlEdge;
 import fr97.umlfx.api.node.UmlNode;
+import fr97.umlfx.command.CommandManager;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-
-import java.io.IOException;
-import java.io.ObjectOutputStream;
 
 public abstract class AbstractDiagram implements UmlDiagram {
 
@@ -24,15 +22,19 @@ public abstract class AbstractDiagram implements UmlDiagram {
 
     private final String id;
 
-    protected AbstractDiagram(String name) {
+    private final CommandManager commandManager;
+
+    protected AbstractDiagram(String name, CommandManager commandManager) {
         instanceCounter++;
         this.id = ID_PREFIX + instanceCounter;
+        this.commandManager = commandManager;
         this.name.set(name);
     }
 
-    protected AbstractDiagram() {
+    protected AbstractDiagram(CommandManager commandManager) {
         instanceCounter++;
         this.id = ID_PREFIX + instanceCounter;
+        this.commandManager = commandManager;
         this.name.set(id);
     }
 
