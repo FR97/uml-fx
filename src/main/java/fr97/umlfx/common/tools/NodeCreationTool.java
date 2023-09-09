@@ -48,10 +48,6 @@ public class NodeCreationTool implements UmlTool {
             NewNodeCommand command = new NewNodeCommand(n, diagram);
 
             diagram.getCommandManager().execute(command);
-
-            if (diagram.addNode(n)) {
-                assignToParentIfInsideParent(diagram, n);
-            }
         }
         event.consume();
     }
@@ -59,15 +55,5 @@ public class NodeCreationTool implements UmlTool {
     @Override
     public void onKeyEvent(KeyEvent event, UmlDiagram diagram) {
 
-    }
-
-    private void assignToParentIfInsideParent(UmlDiagram diagram, UmlNode n) {
-        for (UmlNode node : diagram.getNodes()) {
-            if (node != n
-                    && node instanceof UmlParentNode parentNode
-                    && parentNode.getBounds().contains(n.getBounds())) {
-                parentNode.addChild(n);
-            }
-        }
     }
 }
