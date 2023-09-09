@@ -45,14 +45,11 @@ public class WorkspaceController implements FXMLController<Workspace> {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Workspace initialized");
-
         tabPaneDiagrams.prefHeightProperty().bind(root.heightProperty());
         tabPaneDiagrams.maxHeightProperty().bind(root.heightProperty());
 
         activeDiagramPane.prefHeightProperty().bind(root.heightProperty());
         activeDiagramPane.maxHeightProperty().bind(root.heightProperty());
-
     }
 
     /**
@@ -77,7 +74,6 @@ public class WorkspaceController implements FXMLController<Workspace> {
     private void activeDiagramChanged(ObservableValue<? extends UmlDiagram> obs,
                                       UmlDiagram oldDiagram, UmlDiagram newDiagram) {
         if (oldDiagram != newDiagram) {
-            //System.out.println("Creating new toolbar");
             ToolbarView toolbarView = new ToolbarView(toolbar);
             toolbarView.getRoot().prefHeightProperty().bind(root.heightProperty());
             toolbarView.getRoot().maxHeightProperty().bind(root.heightProperty());
@@ -89,15 +85,10 @@ public class WorkspaceController implements FXMLController<Workspace> {
     private void selectedTabChanged(ObservableValue<? extends Tab> obs, Tab oldTab, Tab newTab) {
         if (newTab != null) {
             AbstractDiagramController diagramController = (AbstractDiagramController) newTab.getUserData();
-
-           // System.out.println("New active diagram:\n   " +
-                   // diagramController.getDiagram() + "\n   " +
-                   // diagramController.getToolbar());
             toolbar = diagramController.getToolbar();
             workspace.setActiveDiagram(diagramController.getDiagram());
         } else {
             root.setRight(null);
-            //System.out.println("All tabs closed");
         }
     }
 

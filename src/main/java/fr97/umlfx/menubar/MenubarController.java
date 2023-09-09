@@ -99,7 +99,7 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @FXML
     void createNewDiagram() {
-        menubarModel.getDiagrams().add(new ClassDiagram());
+        menubarModel.getDiagrams().add(new ClassDiagram(menubarModel.getCommandManager()));
     }
 
     /**

@@ -5,6 +5,7 @@ import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.classdiagram.edge.realization.RealizationEdge;
 import fr97.umlfx.classdiagram.node.classnode.ClassNode;
 import fr97.umlfx.classdiagram.node.interfacenode.InterfaceNode;
+import fr97.umlfx.command.CommandManager;
 import fr97.umlfx.math.geometry.Point;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
@@ -15,7 +16,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 class ClassDiagramTest {
 
-    private ClassDiagram diagram = new ClassDiagram("Diagram");
+    private ClassDiagram diagram = new ClassDiagram("Diagram", new CommandManager());
     private Point p = Point.of(0, 0);
     private UmlNode node = new ClassNode();
     private UmlNode node2 = new InterfaceNode();
