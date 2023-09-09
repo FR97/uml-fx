@@ -60,6 +60,11 @@ public abstract class AbstractDiagram implements UmlDiagram {
     }
 
     @Override
+    public CommandManager getCommandManager() {
+        return commandManager;
+    }
+
+    @Override
     public String toString() {
         return "AbstractDiagram{" +
                 "name=" + name.get() +
