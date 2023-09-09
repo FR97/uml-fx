@@ -4,6 +4,7 @@ import fr97.umlfx.api.UmlDiagram;
 import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.api.node.UmlParentNode;
 import fr97.umlfx.api.tool.UmlTool;
+import fr97.umlfx.command.NewNodeCommand;
 import javafx.beans.binding.StringBinding;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
@@ -43,9 +44,10 @@ public class NodeCreationTool implements UmlTool {
             UmlNode n = nodeSupplier.get();
             n.setTranslateX(event.getX());
             n.setTranslateY(event.getY());
-            if (diagram.addNode(n)) {
-                assignToParentIfInsideParent(diagram, n);
-            }
+
+            NewNodeCommand command = new NewNodeCommand(n, diagram);
+
+            diagram.getCommandManager().execute(command);
         }
         event.consume();
     }
@@ -53,15 +55,5 @@ public class NodeCreationTool implements UmlTool {
     @Override
     public void onKeyEvent(KeyEvent event, UmlDiagram diagram) {
 
-    }
-
-    private void assignToParentIfInsideParent(UmlDiagram diagram, UmlNode n) {
-        for (UmlNode node : diagram.getNodes()) {
-            if (node != n
-                    && node instanceof UmlParentNode parentNode
-                    && parentNode.getBounds().contains(n.getBounds())) {
-                parentNode.addChild(n);
-            }
-        }
     }
 }

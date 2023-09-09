@@ -12,6 +12,7 @@ import fr97.umlfx.classdiagram.edge.realization.RealizationEdge;
 import fr97.umlfx.classdiagram.node.classnode.ClassNode;
 import fr97.umlfx.classdiagram.node.interfacenode.InterfaceNode;
 import fr97.umlfx.classdiagram.node.packagenode.PackageNode;
+import fr97.umlfx.command.CommandManager;
 import fr97.umlfx.common.AbstractDiagram;
 import fr97.umlfx.common.edge.comment.CommentEdge;
 import fr97.umlfx.common.node.comment.CommentNode;
@@ -80,15 +81,15 @@ public class ClassDiagram extends AbstractDiagram {
      *
      * @param name name of this diagram
      */
-    public ClassDiagram(String name) {
-        super(name);
+    public ClassDiagram(String name, CommandManager commandManager) {
+        super(name, commandManager);
     }
 
     /**
      * Default Constructor
      */
-    public ClassDiagram() {
-
+    public ClassDiagram(CommandManager commandManager) {
+        super(commandManager);
     }
 
 
