@@ -70,7 +70,7 @@ public abstract class AbstractDiagram implements UmlDiagram {
                 "name=" + name.get() +
                 ", nodes=" + nodes +
                 ", edges=" + edges +
-                ", id='" + id + '\'' +
+                ", id=" + id +
                 '}';
     }
 
