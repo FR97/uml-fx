@@ -76,7 +76,6 @@ public class EditableTextCell<S, T> extends TextFieldTableCell<S, T> {
         textField.setOnAction((e) -> commitEdit(converter.convert(textField.getText())));
         textField.focusedProperty().addListener((ObservableValue<? extends Boolean> observable, Boolean oldValue, Boolean newValue) -> {
             if (!newValue) {
-                //System.out.println("Committed " + textField.getText());
                 commitEdit(converter.convert(textField.getText()));
             }
         });
