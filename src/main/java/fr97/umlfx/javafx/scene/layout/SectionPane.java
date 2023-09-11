@@ -22,8 +22,7 @@ public class SectionPane extends StackPane {
     private HeaderSection headerSection;
     private final Rectangle background = new Rectangle();
     private final VBox container = new VBox();
-
-    private ObservableList<Section> subsections;
+    private final ObservableList<Section> subsections;
 
     public SectionPane() {
         this("");
