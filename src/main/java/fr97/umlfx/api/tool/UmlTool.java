@@ -1,7 +1,6 @@
 package fr97.umlfx.api.tool;
 
 import fr97.umlfx.api.UmlDiagram;
-import javafx.beans.property.BooleanProperty;
 import javafx.beans.property.StringProperty;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;

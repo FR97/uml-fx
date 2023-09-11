@@ -10,13 +10,12 @@ import javafx.scene.paint.Paint;
 
 /**
  * Grid to show behind diagram
- *
  */
 public class Grid extends Region {
 
     private static final double PIXEL_OFFSET = 0.5;
-    private Canvas canvas ;
-    private ObjectProperty<Paint> paint;
+    private final Canvas canvas;
+    private final ObjectProperty<Paint> paint;
     private final int colCount;
     private final int rowCount;
 
@@ -29,7 +28,7 @@ public class Grid extends Region {
         this.rowCount = rowCount;
         this.paint = new SimpleObjectProperty<>(paint);
 
-        this.paint.addListener(c->layoutChildren());
+        this.paint.addListener(c -> layoutChildren());
 
         canvas = new Canvas();
         getChildren().add(canvas);
@@ -40,11 +39,11 @@ public class Grid extends Region {
      */
     @Override
     protected void layoutChildren() {
-        double w = getWidth() - getPadding().getLeft() - getPadding().getRight() ;
-        double h = getHeight() - getPadding().getTop() - getPadding().getBottom() ;
+        double w = getWidth() - getPadding().getLeft() - getPadding().getRight();
+        double h = getHeight() - getPadding().getTop() - getPadding().getBottom();
 
-        canvas.setWidth(w+1);
-        canvas.setHeight(h+1);
+        canvas.setWidth(w + 1);
+        canvas.setHeight(h + 1);
 
         canvas.setLayoutX(getPadding().getLeft());
         canvas.setLayoutY(getPadding().getRight());
@@ -54,13 +53,13 @@ public class Grid extends Region {
         gc.setStroke(paint.get());
         for (int i = 0; i <= colCount; i++) {
 
-            double x = w*i/ colCount + PIXEL_OFFSET;
+            double x = w * i / colCount + PIXEL_OFFSET;
 
             gc.strokeLine(x, 0, x, h);
         }
 
         for (int j = 0; j <= rowCount; j++) {
-            double y = h*j/ rowCount + PIXEL_OFFSET;
+            double y = h * j / rowCount + PIXEL_OFFSET;
             gc.strokeLine(0, y, w, y);
         }
     }
