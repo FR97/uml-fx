@@ -144,8 +144,6 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         UmlNode tail = edge.getTail();
         UmlNode head = edge.getHead();
 
-        //System.out.println("Bound to: \n   " + tail +"\n   " + head);
-
         tail.widthProperty().addListener(this::calculatePositions);
         tail.heightProperty().addListener(this::calculatePositions);
         tail.translateXProperty().addListener(this::calculatePositions);
