@@ -20,14 +20,14 @@ public class CommentNodeView extends AbstractNodeView {
         container.prefHeightProperty().bind(node.heightProperty());
         container.maxWidthProperty().bind(node.widthProperty());
         container.maxHeightProperty().bind(node.heightProperty());
-        container.setBorder(Theme.defaultTheme.borderProperty.get());
+        container.setBorder(Theme.DEFAULT_THEME.borderProperty.get());
         container.getStyleClass().add("comment-stack");
 
         textArea.textProperty().bindBidirectional(node.textProperty());
         textArea.prefWidthProperty().bind(node.widthProperty().subtract(10));
         textArea.prefHeightProperty().bind(node.widthProperty().subtract(10));
         textArea.setPadding(new Insets(5, 5,5,5));
-        textArea.setFont(Theme.defaultTheme.fontProperty.get());
+        textArea.setFont(Theme.DEFAULT_THEME.fontProperty.get());
         textArea.setWrapText(true);
 
         container.getChildren().add(textArea);
@@ -40,9 +40,9 @@ public class CommentNodeView extends AbstractNodeView {
     @Override
     public void setSelected(boolean selected) {
         if(selected)
-            container.setBorder(Theme.defaultTheme.selectedBorderProperty.get());
+            container.setBorder(Theme.DEFAULT_THEME.selectedBorderProperty.get());
         else
-            container.setBorder(Theme.defaultTheme.borderProperty.get());
+            container.setBorder(Theme.DEFAULT_THEME.borderProperty.get());
     }
 
     @Override
