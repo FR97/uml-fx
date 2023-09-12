@@ -53,7 +53,7 @@ public final class Localization {
     /**
      * get the default locale. This is the systems default if contained in the supported locales, english otherwise.
      *
-     * @return
+     * @return Locale Default system local or Locale.ENGLISH if system defaul is not supported.
      */
     public static Locale getDefaultLocale() {
         Locale sysDefault = Locale.getDefault();

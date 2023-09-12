@@ -6,8 +6,6 @@ import javafx.scene.control.MenuBar;
 
 public class MenubarView extends FXMLView<MenuBar, Menubar> {
 
-
-
     public MenubarView(Menubar menubar){
         super(menubar);
     }

@@ -24,13 +24,11 @@ public class MenubarController implements FXMLController<Menubar> {
     @FXML
     Menu menuFile, menuSettings, menuLang, menuTheme, menuHelp;
 
-
     @FXML
     MenuItem itemNewDiagram, itemSaveDiagram, itemLoadDiagram, itemExit, itemUndo, itemRedo;
 
     @FXML
     MenuItem itemEn, itemSr, itemLight, itemDark;
-
 
     @FXML
     ToggleGroup toggleLanguage, toggleTheme;
@@ -137,13 +135,12 @@ public class MenubarController implements FXMLController<Menubar> {
                 .show();
     }
 
-
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
         if (n != null) {
             if(n.getUserData().toString().equals("light"))
-                Theme.defaultTheme = (Theme.availableThemes().get(0));
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(0));
             else
-                Theme.defaultTheme = (Theme.availableThemes().get(1));
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(1));
         }
     }
 
@@ -169,5 +166,4 @@ public class MenubarController implements FXMLController<Menubar> {
             }
         }
     }
-
 }
