@@ -138,9 +138,9 @@ public class MenubarController implements FXMLController<Menubar> {
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
         if (n != null) {
             if(n.getUserData().toString().equals("light"))
-                Theme.defaultTheme = (Theme.availableThemes().get(0));
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(0));
             else
-                Theme.defaultTheme = (Theme.availableThemes().get(1));
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(1));
         }
     }
 
