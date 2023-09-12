@@ -33,13 +33,8 @@ public class UtilsFX {
         if (owner != null) {
             newStage.initOwner(owner);
             newStage.initModality(Modality.WINDOW_MODAL);
-            /*double calculateMiddleX = owner.getWidth() / 2 - width / 2;
-            double calculateMiddleY = owner.getHeight() / 2 - height / 2;
-            newStage.setX(owner.getX() + calculateMiddleX);
-            newStage.setY(owner.getY() + calculateMiddleY);*/
         }
-      /*  newStage.setWidth(width);
-        newStage.setHeight(height);*/
+
         return newStage;
     }
 
