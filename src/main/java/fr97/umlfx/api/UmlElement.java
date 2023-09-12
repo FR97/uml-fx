@@ -3,8 +3,6 @@ package fr97.umlfx.api;
 
 import javafx.beans.property.BooleanProperty;
 
-import java.io.Serializable;
-
 /**
  * Common type for both nodes and edges, describes their common behaviour
  */
