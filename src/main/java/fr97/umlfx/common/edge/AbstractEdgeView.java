@@ -100,9 +100,6 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         instanceCounter++;
         setId(ID_PREFIX + instanceCounter);
 
-        /*tailMult.textProperty().bind(edge.getTailMultiplicity().umlNotationBinding());
-        headMult.textProperty().bind(edge.getHeadMultiplicity().umlNotationBinding());
-        middleLabel.textProperty().bind(edge.labelProperty());*/
         headLine.setStrokeWidth(2);
         middleLine.setStrokeWidth(2);
         tailLine.setStrokeWidth(2);
