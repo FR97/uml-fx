@@ -51,7 +51,6 @@ public class MenubarController implements FXMLController<Menubar> {
     }
 
     private void onModelSet(){
-        // if there are no commands to undo/redo it will disable item in menu
         CommandManager cmdManager = menubarModel.getCommandManager();
 
         itemUndo.disableProperty().bind(Bindings.createBooleanBinding(
@@ -128,7 +127,6 @@ public class MenubarController implements FXMLController<Menubar> {
                 .setMessage("Are you sure you want to exit?")
                 .resultHandler(btnType -> {
                     if (btnType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                        System.out.println("Closing application");
                         Platform.exit();
                     }
                 })
