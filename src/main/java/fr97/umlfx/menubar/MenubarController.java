@@ -123,8 +123,8 @@ public class MenubarController implements FXMLController<Menubar> {
     void close() {
         Dialogs.builder()
                 .setType(Alert.AlertType.CONFIRMATION)
-                .setTitle("UmlFX Dialog")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle(Localization.get("dialog.title"))
+                .setMessage(Localization.get("dialog.exit.message"))
                 .resultHandler(btnType -> {
                     if (btnType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
                         Platform.exit();
