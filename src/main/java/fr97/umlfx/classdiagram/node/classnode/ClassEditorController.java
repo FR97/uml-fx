@@ -132,7 +132,7 @@ public class ClassEditorController implements FXMLController<ClassNode> {
             ObjectProperty<ObservableMap<String, String>> prop = new SimpleObjectProperty<>(params);
             prop.addListener(c -> {
                 params.clear();
-                prop.get().forEach(params::put);
+                params.putAll(prop.get());
             });
             return prop;
         });
