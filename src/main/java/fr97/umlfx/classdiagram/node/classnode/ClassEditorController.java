@@ -19,7 +19,6 @@ import java.net.URL;
 import java.util.*;
 
 public class ClassEditorController implements FXMLController<ClassNode> {
-
     private ClassNode node;
 
     @FXML
@@ -35,7 +34,7 @@ public class ClassEditorController implements FXMLController<ClassNode> {
     private TableColumn<Function, String> functionName, returnType;
 
     @FXML
-    private TableColumn<Function, ObservableMap<String, String >> parameters;
+    private TableColumn<Function, ObservableMap<String, String>> parameters;
 
     @FXML
     private TableColumn<Field, AccessModifier> fieldAccessModifier;
@@ -79,8 +78,6 @@ public class ClassEditorController implements FXMLController<ClassNode> {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-
-
         Callback<TableColumn<Field, String>, TableCell<Field, String>> fieldStringCellFactory
                 = (TableColumn<Field, String> param) -> new EditableTextCell<>((str -> str));
 
@@ -101,15 +98,15 @@ public class ClassEditorController implements FXMLController<ClassNode> {
 
         Callback<TableColumn<Function, ObservableMap<String, String>>, TableCell<Function, ObservableMap<String, String>>> functionParameterCellFactory
                 = (TableColumn<Function, ObservableMap<String, String>> param) -> new EditableTextCell<>((str -> {
-                    ObservableMap<String, String> map = FXCollections.observableHashMap();
-                    str = str.replace("{","").replace("}", "");
-                    String[] parameters = str.split(", ");
-                    for(String p : parameters){
-                        String[] keyToValue = p.split(":");
-                        if(keyToValue.length > 1)
-                            map.put(keyToValue[0], keyToValue[1]);
-                    }
-                    return map;
+            ObservableMap<String, String> map = FXCollections.observableHashMap();
+            str = str.replace("{", "").replace("}", "");
+            String[] parameters = str.split(", ");
+            for (String p : parameters) {
+                String[] keyToValue = p.split(":");
+                if (keyToValue.length > 1)
+                    map.put(keyToValue[0], keyToValue[1]);
+            }
+            return map;
         }));
 
         fieldName.setCellValueFactory(cell -> cell.getValue().fieldNameProperty());
@@ -132,12 +129,12 @@ public class ClassEditorController implements FXMLController<ClassNode> {
         functionIsStatic.setCellFactory(functionBooleanCellFactory);
         parameters.setCellValueFactory(cell -> {
             ObservableMap<String, String> params = cell.getValue().getParameters();
-            ObjectProperty<ObservableMap<String, String>> prop = new SimpleObjectProperty<>( params);
-            prop.addListener(c->{
+            ObjectProperty<ObservableMap<String, String>> prop = new SimpleObjectProperty<>(params);
+            prop.addListener(c -> {
                 params.clear();
                 prop.get().forEach(params::put);
             });
-           return prop;
+            return prop;
         });
         parameters.setCellFactory(functionParameterCellFactory);
         functionAccessModifier.setCellFactory(functionAccessModifierCellFactory);
