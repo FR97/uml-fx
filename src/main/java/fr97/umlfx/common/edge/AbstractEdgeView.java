@@ -325,9 +325,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
             }
 
             side = Side.EAST;
-        }
-        //If headNode is west of tailNode:
-        else if (tailNode.getTranslateX() > headNode.getTranslateX() + headNode.getWidth()) {
+        } else if (tailNode.getTranslateX() > headNode.getTranslateX() + headNode.getWidth()) {  //If headNode is west of tailNode:
             if(Math.abs(tailNode.getTranslateY() + (tailNode.getHeight()/2) - (headNode.getTranslateY() + (headNode.getHeight()/2))) < 0){
                 tailLine.setStartX(tailNode.getTranslateX());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
@@ -361,9 +359,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
             }
 
             side = Side.WEST;
-        }
-        // If headNode is south of tailNode:
-        else if (tailNode.getTranslateY() + tailNode.getHeight() < headNode.getTranslateY()){
+        } else if (tailNode.getTranslateY() + tailNode.getHeight() < headNode.getTranslateY()){ // If headNode is south of tailNode:
             if(Math.abs(tailNode.getTranslateX() + (tailNode.getWidth()/2) - (headNode.getTranslateX() + (headNode.getWidth()/2))) < 0){
                 tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
                 tailLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight());
@@ -397,9 +393,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
             }
 
             side = Side.SOUTH;
-        }
-        //If headNode is north of tailNode:
-        else if (tailNode.getTranslateY() >= headNode.getTranslateY() + headNode.getHeight()) {
+        } else if (tailNode.getTranslateY() >= headNode.getTranslateY() + headNode.getHeight()) {  //If headNode is north of tailNode:
             if(Math.abs(tailNode.getTranslateX() + (tailNode.getWidth()/2) - (headNode.getTranslateX() + (headNode.getWidth()/2))) < 0){
                 tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
                 tailLine.setStartY(tailNode.getTranslateY());
