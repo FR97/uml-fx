@@ -57,17 +57,9 @@ public class CompositionEdgeView extends AbstractEdgeView {
         Line line2 = new Line(startX, startY, xs[1], ys[1]);
         Line line3 = new Line(xs[0], ys[0], x4, y4);
         Line line4 = new Line(xs[1], ys[1], x4, y4);
-        /*line1.setStrokeWidth(super.STROKE_WIDTH);
-        line2.setStrokeWidth(super.STROKE_WIDTH);
-        line3.setStrokeWidth(super.STROKE_WIDTH);
-        line4.setStrokeWidth(super.STROKE_WIDTH);*/
-        group.getChildren().addAll(diamondBackground, line1, line2, line3, line4);
-        //diamondBackground.toBack();
-        shapeLines.addAll(Arrays.asList(line1, line2, line3, line4));
 
-        /*if (isSelected())
-            for (Line l : shapeLines)
-                l.setStroke(Color.RED);*/
+        group.getChildren().addAll(diamondBackground, line1, line2, line3, line4);
+        shapeLines.addAll(Arrays.asList(line1, line2, line3, line4));
         group.setUserData("shape");
         return group;
     }
