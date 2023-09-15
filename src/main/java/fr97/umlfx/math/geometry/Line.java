@@ -1,5 +1,7 @@
 package fr97.umlfx.math.geometry;
 
+import java.util.Objects;
+
 /**
  * Simple implementation of Line in 2D integer space
  *
@@ -145,8 +147,8 @@ public class Line {
 
         Line line = (Line) o;
 
-        if (start != null ? !start.equals(line.start) : line.start != null) return false;
-        return end != null ? end.equals(line.end) : line.end == null;
+        if (!Objects.equals(start, line.start)) return false;
+        return Objects.equals(end, line.end);
     }
 
     @Override
