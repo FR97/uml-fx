@@ -35,7 +35,7 @@ public class Line {
         return Line.of(fxLine.getStartX(), fxLine.getStartY(), fxLine.getEndX(), fxLine.getEndY());
     }
 
-    public javafx.scene.shape.Line toFXLine(){
+    public javafx.scene.shape.Line toFXLine() {
         return new javafx.scene.shape.Line(start.getX(), start.getY(), end.getX(), end.getY());
     }
 
@@ -63,19 +63,20 @@ public class Line {
         return end.getX();
     }
 
-    public int getEndY(){
+    public int getEndY() {
         return end.getY();
     }
 
-    public int getStartY(){
+    public int getStartY() {
         return start.getY();
     }
+
     public void setStartY(int y) {
         start.setY(y);
     }
 
 
-    public double distanceFrom(Point point){
+    public double distanceFrom(Point point) {
 
         /*
          *                      . Point(x,y)
@@ -113,17 +114,19 @@ public class Line {
         double scalar = a * c + b * d; // scalar product of two vectors
         double len_sqr = c * c + d * d; // length of line squared
         double projectionDistance = -1; // projection distance of point to line
-        if(len_sqr != 0)
+
+        if (len_sqr != 0) {
             projectionDistance = scalar / len_sqr;
+        }
 
         // Coordinates of intersection point
         double xx = 0;
         double yy = 0;
 
-        if(projectionDistance < 0){
+        if (projectionDistance < 0) {
             xx = getStartX();
             yy = getStartY();
-        } else if(projectionDistance > 1){
+        } else if (projectionDistance > 1) {
             xx = getEndX();
             yy = getEndY();
         } else {
@@ -132,7 +135,7 @@ public class Line {
         }
 
         // Distance between two points
-        double dx =  point.getX() - xx;
+        double dx = point.getX() - xx;
         double dy = point.getY() - yy;
         double distance = Math.sqrt(dx * dx + dy * dy);
 
