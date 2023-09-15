@@ -1,5 +1,7 @@
 package fr97.umlfx.math.geometry;
 
+import java.util.Objects;
+
 /**
  * Simple implementation of Line in 2D integer space
  *
@@ -33,7 +35,7 @@ public class Line {
         return Line.of(fxLine.getStartX(), fxLine.getStartY(), fxLine.getEndX(), fxLine.getEndY());
     }
 
-    public javafx.scene.shape.Line toFXLine(){
+    public javafx.scene.shape.Line toFXLine() {
         return new javafx.scene.shape.Line(start.getX(), start.getY(), end.getX(), end.getY());
     }
 
@@ -61,19 +63,20 @@ public class Line {
         return end.getX();
     }
 
-    public int getEndY(){
+    public int getEndY() {
         return end.getY();
     }
 
-    public int getStartY(){
+    public int getStartY() {
         return start.getY();
     }
+
     public void setStartY(int y) {
         start.setY(y);
     }
 
 
-    public double distanceFrom(Point point){
+    public double distanceFrom(Point point) {
 
         /*
          *                      . Point(x,y)
@@ -95,12 +98,11 @@ public class Line {
          *                   P1 \_________|                        P2 \__________|
          *              projectionDistance1 < 0                      projectionDistance1 > 1
          *
-         *              Nekada projekcija tacke na pravu pada van datog segmenta prave
-         *              Tada je najbliza presecan tacka sa linijom:
+         *              Sometimes projection of point to line is outside of line segment
+         *              Then the closest intersection point with line is:
          *
-         *              pocetna tacka linije ako je distanca projekcije < 0
-         *              krajnja tacka linije ako je distanca projekcije > 1
-         *
+         *              start point of line if projection distance < 0
+         *              end point of line if projection distance > 1
          *
          */
 
@@ -109,20 +111,22 @@ public class Line {
         double c = getEndX() - start.getX(); // Vector: Line.endX  - Line.startX
         double d = getEndY() - start.getX(); // Vector: Line.endY  - Line.startY
 
-        double scalar = a * c + b * d; // skalarni proizvod vektora
-        double len_sqr = c * c + d * d; // duzina linije na kvadrat
-        double projectionDistance = -1; // Distanca od pocetne tacke linije do projekcije
-        if(len_sqr != 0) // ako linija ima duzinu nula tj. linija je u stvari tacka
-            projectionDistance = scalar / len_sqr;
+        double scalar = a * c + b * d; // scalar product of two vectors
+        double len_sqr = c * c + d * d; // length of line squared
+        double projectionDistance = -1; // projection distance of point to line
 
-        // Koordinate tacke preseka (tacka P na slici)
+        if (len_sqr != 0) {
+            projectionDistance = scalar / len_sqr;
+        }
+
+        // Coordinates of intersection point
         double xx = 0;
         double yy = 0;
 
-        if(projectionDistance < 0){ // linija je tacka ili se tacka projektuje
+        if (projectionDistance < 0) {
             xx = getStartX();
             yy = getStartY();
-        } else if(projectionDistance > 1){
+        } else if (projectionDistance > 1) {
             xx = getEndX();
             yy = getEndY();
         } else {
@@ -130,8 +134,8 @@ public class Line {
             yy = getStartY() + projectionDistance * d;
         }
 
-        // Formula za distancu izmedju dve date tacke
-        double dx =  point.getX() - xx;
+        // Distance between two points
+        double dx = point.getX() - xx;
         double dy = point.getY() - yy;
         double distance = Math.sqrt(dx * dx + dy * dy);
 
@@ -145,8 +149,8 @@ public class Line {
 
         Line line = (Line) o;
 
-        if (start != null ? !start.equals(line.start) : line.start != null) return false;
-        return end != null ? end.equals(line.end) : line.end == null;
+        if (!Objects.equals(start, line.start)) return false;
+        return Objects.equals(end, line.end);
     }
 
     @Override

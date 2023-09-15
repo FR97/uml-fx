@@ -46,7 +46,7 @@ public class Rectangle {
         return Rectangle.of(start.getX(), start.getY(), width, height);
     }
 
-    public static Rectangle from(Rectangle2D rectangle2D){
+    public static Rectangle from(Rectangle2D rectangle2D) {
         return Rectangle.of(
                 rectangle2D.getMinX(),
                 rectangle2D.getMinY(),
@@ -54,8 +54,8 @@ public class Rectangle {
                 rectangle2D.getHeight());
     }
 
-    public Rectangle2D toRectangle2D(){
-        return new  Rectangle2D(start.getX(), start.getY(), width, height);
+    public Rectangle2D toRectangle2D() {
+        return new Rectangle2D(start.getX(), start.getY(), width, height);
     }
 
     /**
@@ -112,12 +112,14 @@ public class Rectangle {
     }
 
     public boolean contains(Point point) {
-        if (point == null)
+        if (point == null) {
             throw new IllegalArgumentException("point can't be null");
+        }
+
         return contains(point.getX(), point.getY());
     }
 
-    public boolean contains(Rectangle rectangle){
+    public boolean contains(Rectangle rectangle) {
         return this.contains(rectangle.start) && this.contains(Point.of(getEndX(), getEndY()));
     }
 
@@ -137,16 +139,15 @@ public class Rectangle {
      * @param rect The rectangle to include.
      * @return A new rectangle that is this rectangle enlarged to include rect.
      */
-    public Rectangle add(Rectangle rect)
-    {
-        if(rect == null)
-            throw new  IllegalArgumentException("rect can't be null");
+    public Rectangle add(Rectangle rect) {
+        if (rect == null)
+            throw new IllegalArgumentException("rect can't be null");
         int startX = Math.min(getStartX(), rect.getStartX());
         int startY = Math.min(getStartY(), rect.getStartY());
         int endX = Math.max(getEndX(), rect.getEndX());
         int endY = Math.max(getEndY(), rect.getEndY());
-        int width = endX-startX;
-        int height = endY-startY;
+        int width = endX - startX;
+        int height = endY - startY;
         return Rectangle.of(startX, startY, width, height);
     }
 
