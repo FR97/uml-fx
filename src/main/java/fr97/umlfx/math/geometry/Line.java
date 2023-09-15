@@ -97,12 +97,11 @@ public class Line {
          *                   P1 \_________|                        P2 \__________|
          *              projectionDistance1 < 0                      projectionDistance1 > 1
          *
-         *              Nekada projekcija tacke na pravu pada van datog segmenta prave
-         *              Tada je najbliza presecan tacka sa linijom:
+         *              Sometimes projection of point to line is outside of line segment
+         *              Then the closest intersection point with line is:
          *
-         *              pocetna tacka linije ako je distanca projekcije < 0
-         *              krajnja tacka linije ako je distanca projekcije > 1
-         *
+         *              start point of line if projection distance < 0
+         *              end point of line if projection distance > 1
          *
          */
 
@@ -111,17 +110,17 @@ public class Line {
         double c = getEndX() - start.getX(); // Vector: Line.endX  - Line.startX
         double d = getEndY() - start.getX(); // Vector: Line.endY  - Line.startY
 
-        double scalar = a * c + b * d; // skalarni proizvod vektora
-        double len_sqr = c * c + d * d; // duzina linije na kvadrat
-        double projectionDistance = -1; // Distanca od pocetne tacke linije do projekcije
-        if(len_sqr != 0) // ako linija ima duzinu nula tj. linija je u stvari tacka
+        double scalar = a * c + b * d; // scalar product of two vectors
+        double len_sqr = c * c + d * d; // length of line squared
+        double projectionDistance = -1; // projection distance of point to line
+        if(len_sqr != 0)
             projectionDistance = scalar / len_sqr;
 
-        // Koordinate tacke preseka (tacka P na slici)
+        // Coordinates of intersection point
         double xx = 0;
         double yy = 0;
 
-        if(projectionDistance < 0){ // linija je tacka ili se tacka projektuje
+        if(projectionDistance < 0){
             xx = getStartX();
             yy = getStartY();
         } else if(projectionDistance > 1){
@@ -132,7 +131,7 @@ public class Line {
             yy = getStartY() + projectionDistance * d;
         }
 
-        // Formula za distancu izmedju dve date tacke
+        // Distance between two points
         double dx =  point.getX() - xx;
         double dy = point.getY() - yy;
         double distance = Math.sqrt(dx * dx + dy * dy);
