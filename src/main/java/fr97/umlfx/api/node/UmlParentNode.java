@@ -62,5 +62,4 @@ public interface UmlParentNode extends UmlNode {
      */
     Set<Class<? extends UmlNode>> acceptedChildren();
 
-
 }
