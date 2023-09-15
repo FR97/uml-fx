@@ -50,7 +50,7 @@ public class MenubarController implements FXMLController<Menubar> {
         return menubarModel;
     }
 
-    private void onModelSet(){
+    private void onModelSet() {
         CommandManager cmdManager = menubarModel.getCommandManager();
 
         itemUndo.disableProperty().bind(Bindings.createBooleanBinding(
@@ -76,7 +76,7 @@ public class MenubarController implements FXMLController<Menubar> {
     /**
      * Binds text properties to localized string binding which change value based on current locale
      */
-    private final void initLocalizationBindings(){
+    private void initLocalizationBindings() {
         menuFile.textProperty().bind(Localization.createStringBinding("menu.file"));
         itemNewDiagram.textProperty().bind(Localization.createStringBinding("menu.file.new"));
         itemLoadDiagram.textProperty().bind(Localization.createStringBinding("menu.file.load"));
@@ -101,7 +101,6 @@ public class MenubarController implements FXMLController<Menubar> {
 
     /**
      * Undo last command
-     *
      */
     @FXML
     void undo() {
@@ -135,15 +134,17 @@ public class MenubarController implements FXMLController<Menubar> {
 
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
         if (n != null) {
-            if(n.getUserData().toString().equals("light"))
+            if (n.getUserData().toString().equals("light")) {
                 Theme.DEFAULT_THEME = (Theme.availableThemes().get(0));
-            else
+            } else {
                 Theme.DEFAULT_THEME = (Theme.availableThemes().get(1));
+            }
         }
     }
 
     /**
      * Changes {@link Locale} to one of the supported locales
+     *
      * @param obs
      * @param o
      * @param n
