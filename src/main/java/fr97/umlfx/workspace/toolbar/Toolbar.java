@@ -17,11 +17,7 @@ public class Toolbar {
     private final ObservableList<UmlTool> tools = FXCollections.observableArrayList();
 
     public Toolbar(Collection<UmlTool> tools){
-
         this.tools.addAll(tools);
-        this.activeTool.addListener(l ->{
-            //System.out.println("Tool changed to " + activeTool.get());
-        });
     }
 
     public Optional<UmlTool> getActiveTool(){
