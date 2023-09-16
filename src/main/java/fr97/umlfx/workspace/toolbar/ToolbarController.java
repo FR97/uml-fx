@@ -35,7 +35,6 @@ public class ToolbarController implements FXMLController<Toolbar> {
         onModelSet();
     }
 
-
     private void onModelSet() {
         toolBar.getItems().addAll(toolbarModel.getTools().stream()
                 .sequential()
