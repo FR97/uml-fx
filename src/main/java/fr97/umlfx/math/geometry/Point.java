@@ -115,11 +115,9 @@ public class Point {
         int y0 = point.y - y;
         return Math.sqrt(x0 * x0 + y0 * y0);
     }
-
     public Point copy(){
         return new Point(this.x, this.y);
     }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
