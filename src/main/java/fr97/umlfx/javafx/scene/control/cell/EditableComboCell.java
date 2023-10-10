@@ -83,7 +83,7 @@ public class EditableComboCell<S, T> extends TableCell<S, T> {
     }
 
     private ListCell<T> createCell(ListView<T> c) {
-        return new ListCell<T>() {
+        return new ListCell<>() {
             @Override
             protected void updateItem(T item, boolean empty) {
                 super.updateItem(item, empty);
