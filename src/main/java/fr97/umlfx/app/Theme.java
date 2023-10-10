@@ -31,7 +31,7 @@ public class Theme {
     public SimpleObjectProperty<Paint> nodeBackgroundProperty = new SimpleObjectProperty<>(Color.LIGHTSKYBLUE);
     public SimpleObjectProperty<Paint> backgroundColorProperty = new SimpleObjectProperty<>(Color.WHITE);
     public SimpleObjectProperty<Background> backgroundProperty =
-            new SimpleObjectProperty<>(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
+        new SimpleObjectProperty<>(new Background(new BackgroundFill(Color.GRAY, CornerRadii.EMPTY, Insets.EMPTY)));
 
     public static List<Theme> availableThemes() {
 
@@ -45,9 +45,7 @@ public class Theme {
         return new Border(new BorderStroke(color, BorderStrokeStyle.SOLID, CornerRadii.EMPTY, new BorderWidths(width)));
     }
 
-
     private Theme() {
-
 
     }
 
