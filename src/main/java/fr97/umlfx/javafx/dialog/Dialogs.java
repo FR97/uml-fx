@@ -19,16 +19,12 @@ import static javafx.scene.control.ButtonBar.ButtonData;
  * @author Filip
  *
  * @see Dialog
- *
- * TODO moze da se prosiri funkcionalnost
  */
 public final class Dialogs {
-
 
     private static ButtonType createLocalizedButton(ButtonData data, String key) {
         return new ButtonType(Localization.get(key), data);
     }
-
 
     public static DialogBuilder builder() {
         return new DialogBuilder();
@@ -45,7 +41,6 @@ public final class Dialogs {
         private List<ButtonType> buttons;
 
         private DialogBuilder() {
-
 
         }
 
@@ -86,7 +81,6 @@ public final class Dialogs {
             dialog.setResizable(resizeable);
             dialog.getDialogPane().getButtonTypes().clear();
 
-
             switch (type) {
                 case NONE:
                     break;
@@ -106,7 +100,6 @@ public final class Dialogs {
             dialog.setHeaderText(header);
             dialog.setContentText(message);
 
-
             Optional<ButtonType> result = dialog.showAndWait();
             System.out.println("Result: " + result);
             if (consumer != null)
@@ -124,7 +117,6 @@ public final class Dialogs {
                 createLocalizedButton(ButtonData.OK_DONE, "dialog.btn.ok"),
                 createLocalizedButton(ButtonData.CANCEL_CLOSE, "dialog.btn.cancel")
         );
-
     }
 
 }
