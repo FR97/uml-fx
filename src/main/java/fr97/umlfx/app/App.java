@@ -24,10 +24,6 @@ public class App extends Application {
         launch(args);
     }
 
-
-    // private WorkspaceView workspaceView;
-
-
     @Override
     public void start(Stage primaryStage) {
 
@@ -78,6 +74,4 @@ public class App extends Application {
                 })
                 .show();
     }
-
-
 }

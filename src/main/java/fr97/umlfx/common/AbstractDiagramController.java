@@ -63,6 +63,10 @@ public abstract class AbstractDiagramController {
 
     protected Action currentAction = Action.NO_ACTION;
 
+    protected double mouseX;
+
+    protected double mouseY;
+
 
     enum Action {
         NO_ACTION, SELECTING, DRAGGING_NODE, DRAGGING_EDGE, RESIZING, MOVING, DRAWING, CREATING, CONTEXT_MENU
@@ -112,7 +116,11 @@ public abstract class AbstractDiagramController {
         diagramView.setOnMousePressed(event -> toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram)));
         diagramView.setOnMouseReleased(event -> toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram)));
         diagramView.setOnMouseDragged(event -> toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram)));
-        diagramView.setOnMouseMoved(event -> toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram)));
+        diagramView.setOnMouseMoved(event -> {
+            toolbar.getActiveTool().ifPresent(t -> t.onMouseEvent(event, diagram));
+            mouseX = event.getX();
+            mouseY = event.getY();
+        });
     }
 
     private void addDiagramListeners() {
@@ -237,8 +245,8 @@ public abstract class AbstractDiagramController {
     private void pasteCopied(ActionEvent actionEvent) {
         if (copiedElement.get() != null) {
             UmlNode node = copiedElement.get().copy();
-            node.setTranslateX(node.getTranslateX() + 10);
-            node.setTranslateY(node.getTranslateY() + 10);
+            node.setTranslateX(mouseX);
+            node.setTranslateY(mouseY);
             addNode(node);
         }
     }

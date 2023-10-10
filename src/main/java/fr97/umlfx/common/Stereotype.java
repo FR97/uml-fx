@@ -7,19 +7,31 @@ public enum Stereotype {
             return "";
         }
     },
-    INTERFACE{
+    INTERFACE {
         @Override
         public String getText() {
             return "<<interface>>";
         }
     },
-    ENUM{
+    ENUM {
         @Override
         public String getText() {
             return "<<enumeration>>";
         }
-    };
-
+    },
+    PACKAGE {
+        @Override
+        public String getText() {
+            return "<<package>>";
+        }
+    },
+    MODULE {
+        @Override
+        public String getText() {
+            return "<<module>>";
+        }
+    },
+    ;
 
     public abstract String getText();
 }

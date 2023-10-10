@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+<StackPane maxHeight="300.0" maxWidth="500.0" minHeight="300.0" minWidth="500.0" prefHeight="300.0" prefWidth="500.0"
+           xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1"
+           fx:controller="fr97.umlfx.classdiagram.node.packagenode.PackageEditorController">
+    <children>
+        <TabPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity"
+                 prefHeight="300.0" prefWidth="500.0" tabClosingPolicy="UNAVAILABLE">
+            <tabs>
+                <Tab closable="false" text="General">
+                    <content>
+                        <VBox prefHeight="200.0" prefWidth="100.0">
+                            <children>
+                                <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Name:">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <TextField fx:id="txtName" layoutX="136.0" layoutY="2.0" prefWidth="150.0"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Width:">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Slider fx:id="sliderWidth" blockIncrement="5.0" layoutX="135.0" layoutY="6.0"
+                                                majorTickUnit="100.0" max="640.0" min="140.0" minorTickCount="4"
+                                                prefHeight="14.0" prefWidth="150.0" showTickLabels="true"
+                                                showTickMarks="true"/>
+                                    </children>
+                                </AnchorPane>
+                                <AnchorPane nodeOrientation="LEFT_TO_RIGHT" prefHeight="50.0" prefWidth="200.0">
+                                    <children>
+                                        <Label text="Height:">
+                                            <font>
+                                                <Font size="16.0"/>
+                                            </font>
+                                        </Label>
+                                        <Slider fx:id="sliderHeight" layoutX="135.0" layoutY="6.0" majorTickUnit="100.0"
+                                                max="640.0" min="140.0" minorTickCount="4" prefHeight="14.0"
+                                                prefWidth="150.0" showTickLabels="true" showTickMarks="true"/>
+                                    </children>
+                                </AnchorPane>
+                            </children>
+                            <padding>
+                                <Insets left="30.0" top="30.0"/>
+                            </padding>
+                        </VBox>
+                    </content>
+                </Tab>
+            </tabs>
+        </TabPane>
+    </children>
+</StackPane>

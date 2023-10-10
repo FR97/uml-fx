@@ -1,6 +1,5 @@
 package fr97.umlfx.api;
 
-import java.io.Serializable;
 
 /**
  * Enum representing sides, used for finding on which side should

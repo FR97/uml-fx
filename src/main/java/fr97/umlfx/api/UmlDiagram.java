@@ -5,12 +5,12 @@ import fr97.umlfx.api.edge.UmlEdge;
 import fr97.umlfx.api.node.UmlParentNode;
 import fr97.umlfx.api.node.UmlNode;
 import fr97.umlfx.api.tool.UmlTool;
+import fr97.umlfx.command.CommandManager;
 import fr97.umlfx.math.geometry.Point;
 import javafx.beans.property.StringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
@@ -107,4 +107,5 @@ public interface UmlDiagram {
 
     String getId();
 
+    CommandManager getCommandManager();
 }

@@ -24,13 +24,11 @@ public class MenubarController implements FXMLController<Menubar> {
     @FXML
     Menu menuFile, menuSettings, menuLang, menuTheme, menuHelp;
 
-
     @FXML
     MenuItem itemNewDiagram, itemSaveDiagram, itemLoadDiagram, itemExit, itemUndo, itemRedo;
 
     @FXML
     MenuItem itemEn, itemSr, itemLight, itemDark;
-
 
     @FXML
     ToggleGroup toggleLanguage, toggleTheme;
@@ -52,8 +50,7 @@ public class MenubarController implements FXMLController<Menubar> {
         return menubarModel;
     }
 
-    private void onModelSet(){
-        // if there are no commands to undo/redo it will disable item in menu
+    private void onModelSet() {
         CommandManager cmdManager = menubarModel.getCommandManager();
 
         itemUndo.disableProperty().bind(Bindings.createBooleanBinding(
@@ -70,8 +67,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        System.out.println("Initializing Menubar Controller");
-
         initLocalizationBindings();
 
         toggleLanguage.selectedToggleProperty().addListener(this::toggleLangListener);
@@ -81,7 +76,7 @@ public class MenubarController implements FXMLController<Menubar> {
     /**
      * Binds text properties to localized string binding which change value based on current locale
      */
-    private final void initLocalizationBindings(){
+    private void initLocalizationBindings() {
         menuFile.textProperty().bind(Localization.createStringBinding("menu.file"));
         itemNewDiagram.textProperty().bind(Localization.createStringBinding("menu.file.new"));
         itemLoadDiagram.textProperty().bind(Localization.createStringBinding("menu.file.load"));
@@ -101,18 +96,14 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @FXML
     void createNewDiagram() {
-        menubarModel.getDiagrams().add(new ClassDiagram());
-        //System.out.println("New diagram added, all diagrams: " + menubarModel.getDiagrams());
+        menubarModel.getDiagrams().add(new ClassDiagram(menubarModel.getCommandManager()));
     }
 
     /**
      * Undo last command
-     *
      */
     @FXML
     void undo() {
-        //TODO povezati sve sa command managerom kako bi radio undo/redo
-        System.out.println("UNDO COMMAND");
         menubarModel.getCommandManager().undo();
     }
 
@@ -121,7 +112,6 @@ public class MenubarController implements FXMLController<Menubar> {
      */
     @FXML
     void redo() {
-        System.out.println("REDO COMMAND");
         menubarModel.getCommandManager().redo();
     }
 
@@ -132,30 +122,29 @@ public class MenubarController implements FXMLController<Menubar> {
     void close() {
         Dialogs.builder()
                 .setType(Alert.AlertType.CONFIRMATION)
-                .setTitle("UmlFX Dialog")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle(Localization.get("dialog.title"))
+                .setMessage(Localization.get("dialog.exit.message"))
                 .resultHandler(btnType -> {
                     if (btnType.getButtonData() == ButtonBar.ButtonData.OK_DONE) {
-                        System.out.println("Closing application");
                         Platform.exit();
                     }
                 })
                 .show();
     }
 
-
     private void toggleThemeListener(Observable obs, Toggle o, Toggle n) {
-        //TODO implement theme change
         if (n != null) {
-            if(n.getUserData().toString().equals("light"))
-                Theme.defaultTheme = (Theme.availableThemes().get(0));
-            else
-                Theme.defaultTheme = (Theme.availableThemes().get(1));
+            if (n.getUserData().toString().equals("light")) {
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(0));
+            } else {
+                Theme.DEFAULT_THEME = (Theme.availableThemes().get(1));
+            }
         }
     }
 
     /**
      * Changes {@link Locale} to one of the supported locales
+     *
      * @param obs
      * @param o
      * @param n
@@ -176,5 +165,4 @@ public class MenubarController implements FXMLController<Menubar> {
             }
         }
     }
-
 }

@@ -34,7 +34,6 @@ public class EditableComboCell<S, T> extends TableCell<S, T> {
             super.startEdit();
             comboBox = comboBoxSupplier.get();
             comboBox.setOnAction((e) -> {
-                //System.out.println("Committed: " + comboBox.getSelectionModel().getSelectedItem());
                 commitEdit(comboBox.getSelectionModel().getSelectedItem());
             });
             comboBox.setCellFactory(this::createCell);

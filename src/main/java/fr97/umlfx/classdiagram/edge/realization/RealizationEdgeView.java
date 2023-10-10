@@ -10,6 +10,7 @@ import java.util.Arrays;
 
 public class RealizationEdgeView extends AbstractEdgeView {
 
+    private static final double ARROW_ANGLE = Math.toRadians(25);
     public RealizationEdgeView(RealizationEdge edge){
         super(edge);
 
@@ -29,14 +30,13 @@ public class RealizationEdgeView extends AbstractEdgeView {
     protected Group createShape(double startX, double startY, double endX, double endY) {
         Group group = new Group();
 
-        double phi = Math.toRadians(25);
         int barb = 20;
         double dy = startY - endY;
         double dx = startX - endX;
         double theta = Math.atan2(dy, dx);
         double x = 0;
         double y = 0;
-        double rho = theta + phi;
+        double rho = theta + ARROW_ANGLE;
 
         double[] xs = new double[2];
         double[] ys = new double[2];
@@ -46,7 +46,7 @@ public class RealizationEdgeView extends AbstractEdgeView {
             y = startY - barb * Math.sin(rho);
             xs[j] = x;
             ys[j] = y;
-            rho = theta - phi;
+            rho = theta - ARROW_ANGLE;
         }
 
         Polygon background = new Polygon();

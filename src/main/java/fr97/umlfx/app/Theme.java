@@ -15,7 +15,7 @@ import java.util.List;
 
 public class Theme {
 
-    public static Theme defaultTheme = availableThemes().get(0);
+    public static Theme DEFAULT_THEME = availableThemes().get(0);
 
     public SimpleObjectProperty<Paint> borderColorProperty = new SimpleObjectProperty<>(Color.BLACK);
     public SimpleObjectProperty<Border> borderProperty = new SimpleObjectProperty<>(createBorder(Color.BLACK, 1));

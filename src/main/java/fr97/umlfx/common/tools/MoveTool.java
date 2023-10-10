@@ -85,14 +85,14 @@ public class MoveTool implements UmlTool {
         if (movingNode != null) {
             movingNode.setTranslateX(movingCopy.getTranslateX());
             movingNode.setTranslateY(movingCopy.getTranslateY());
-            // TODO Mozda da se napravi da resajzuje tokom pomeranja a ne na kraju
+
             fr97.umlfx.math.geometry.Rectangle rect = fr97.umlfx.math.geometry.Rectangle.of(0,0,0,0);
             for(UmlNode n : diagram.getNodes())
                 rect = rect.add(n.getBounds());
 
             Pane p = (Pane)event.getSource();
-            p.setPrefWidth(rect.getWidth() > AbstractDiagramView.MINIMUM_SIZE ? rect.getWidth() : AbstractDiagramView.MINIMUM_SIZE);
-            p.setPrefHeight(rect.getHeight() > AbstractDiagramView.MINIMUM_SIZE ? rect.getHeight() : AbstractDiagramView.MINIMUM_SIZE);
+            p.setPrefWidth(Math.max(rect.getWidth(), AbstractDiagramView.MINIMUM_SIZE));
+            p.setPrefHeight(Math.max(rect.getHeight(), AbstractDiagramView.MINIMUM_SIZE));
         }
         ((Pane) event.getSource()).getChildren().remove(movingNodeView);
         movingNodeView = null;

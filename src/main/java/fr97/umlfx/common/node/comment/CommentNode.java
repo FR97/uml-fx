@@ -8,37 +8,35 @@ import javafx.beans.property.StringProperty;
 
 public class CommentNode extends AbstractNode {
 
-    private static final String COPY_POSTFIX = "_Copy";
-
     private final StringProperty text = new SimpleStringProperty();
 
-    public CommentNode(){
+    public CommentNode() {
         this("");
     }
 
-    public CommentNode(String text){
+    public CommentNode(String text) {
         ArgumentChecker.notNull(text, "text can't be null");
         this.text.set(text);
         this.setWidth(180);
         this.setHeight(140);
     }
 
-    public StringProperty textProperty(){
+    public StringProperty textProperty() {
         return text;
     }
 
-    public String getText(){
+    public String getText() {
         return text.get();
     }
 
-    public void setText(String text){
+    public void setText(String text) {
         this.text.set(text);
     }
 
     @Override
     public CommentNode copy() {
 
-        CommentNode copy = new CommentNode(getText()  + COPY_POSTFIX);
+        CommentNode copy = new CommentNode(getText());
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());

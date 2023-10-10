@@ -20,11 +20,9 @@ import java.util.stream.Collectors;
  * ClassNode is an implementation of {@link fr97.umlfx.api.node.UmlNode}
  * It extends its basic node with additional fields and functions
  *
- * TODO odliciti da li klasa treba da nasledjuje InterfaceNode
  */
 public class ClassNode extends AbstractNode implements UmlNamedNode {
 
-    private static final String COPY_POSTFIX = "_Copy";
     private final StringProperty name = new SimpleStringProperty(getId());
 
     private final ObjectProperty<AccessModifier> accessModifier = new SimpleObjectProperty<>(AccessModifier.PUBLIC);
@@ -72,7 +70,7 @@ public class ClassNode extends AbstractNode implements UmlNamedNode {
     @Override
     public ClassNode copy() {
 
-        ClassNode copy = new ClassNode(name.get() + COPY_POSTFIX);
+        ClassNode copy = new ClassNode(name.get());
 
         copy.setStart(this.getStart().copy());
         copy.setWidth(this.getWidth());
