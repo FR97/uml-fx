@@ -14,7 +14,6 @@ import java.util.function.Supplier;
  * @param <T>
  * @author Filip
  * @see javafx.scene.control.ComboBox
- *   TODO treba da se proveri, radjeno na brzinu
  */
 public class EditableComboCell<S, T> extends TableCell<S, T> {
     private ComboBox<T> comboBox;
