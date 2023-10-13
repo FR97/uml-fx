@@ -26,7 +26,6 @@ public class App extends Application {
 
     @Override
     public void start(Stage primaryStage) {
-
         final BorderPane root = new BorderPane();
 
         final CommandManager commandManager = new CommandManager();
@@ -57,8 +56,6 @@ public class App extends Application {
         primaryStage.setScene(scene);
         primaryStage.setOnCloseRequest(App::onCloseRequest);
         primaryStage.show();
-
-
     }
 
     private static void onCloseRequest(WindowEvent event) {

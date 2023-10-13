@@ -9,11 +9,10 @@ import java.util.function.Supplier;
 
 /**
  * Extends {@link TableCell}, uses ComboBox for editing cell value
+ *
  * @param <S>
  * @param <T>
- *
  * @author Filip
- *
  * @see javafx.scene.control.ComboBox
  *   TODO treba da se proveri, radjeno na brzinu
  */
@@ -86,10 +85,11 @@ public class EditableComboCell<S, T> extends TableCell<S, T> {
             @Override
             protected void updateItem(T item, boolean empty) {
                 super.updateItem(item, empty);
-                if (item == null || empty)
+                if (item == null || empty) {
                     setText(null);
-                else
+                } else {
                     setText(item.toString());
+                }
             }
         };
     }
