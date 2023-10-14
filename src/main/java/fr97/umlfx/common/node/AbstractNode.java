@@ -14,7 +14,6 @@ public abstract class AbstractNode implements UmlNode {
 
     protected static final int MIN_WIDTH = 140;
     protected static final int MIN_HEIGHT = 140;
-
     private static int instanceCounter = 0;
 
     private final DoubleProperty startX = new SimpleDoubleProperty(0);
@@ -130,7 +129,7 @@ public abstract class AbstractNode implements UmlNode {
                 ", translateY=" + translateY +
                 ", widthScale=" + widthScale +
                 ", heightScale=" + heightScale +
-                ", id='" + id + '\'' +
+                ", id=" + id +
                 '}';
     }
 }
