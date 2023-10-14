@@ -19,10 +19,7 @@ public class NodeController {
         this.commandManager = commandManager;
     }
 
-
-
     public void showNodeEditDialog(UmlNode node){
-
         Stage editDialogStage = UtilsFX.createNewStage(diagramController.getStage(), Localization.createStringBinding("stage.title.editor"));
 
         BorderPane root = new BorderPane();
@@ -30,6 +27,5 @@ public class NodeController {
         Scene scene = new Scene(root, 400, 300);
         editDialogStage.setScene(scene);
         editDialogStage.show();
-
     }
 }
