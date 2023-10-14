@@ -52,9 +52,7 @@ public class Grid extends Region {
         gc.clearRect(0, 0, w, h);
         gc.setStroke(paint.get());
         for (int i = 0; i <= colCount; i++) {
-
             double x = w * i / colCount + PIXEL_OFFSET;
-
             gc.strokeLine(x, 0, x, h);
         }
 
