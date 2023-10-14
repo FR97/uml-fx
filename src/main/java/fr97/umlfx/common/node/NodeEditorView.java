@@ -28,7 +28,6 @@ import java.util.function.Consumer;
  */
 public final class NodeEditorView extends FXMLView<BorderPane, UmlNode> {
 
-
     private NodeEditorView(UmlNode model) throws IllegalStateException, IllegalArgumentException {
         super(model);
     }

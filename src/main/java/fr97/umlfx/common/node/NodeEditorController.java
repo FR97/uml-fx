@@ -13,16 +13,11 @@ import java.util.function.Consumer;
 
 public class NodeEditorController implements FXMLController<UmlNode> {
 
-
     private UmlNode node;
-
-    private Consumer<Event> onApply = event -> {
-    };
-    private Consumer<Event> onCancel = event -> {
-    };
+    private Consumer<Event> onApply = event -> {};
+    private Consumer<Event> onCancel = event -> {};
     @FXML
     private Button btnApply, btnCancel;
-
 
     /**
      * {@inheritDoc}
@@ -32,7 +27,6 @@ public class NodeEditorController implements FXMLController<UmlNode> {
         btnApply.setOnAction(event -> onApply.accept(event));
         btnCancel.setOnAction(event -> onCancel.accept(event));
     }
-
 
     /**
      * {@inheritDoc}
