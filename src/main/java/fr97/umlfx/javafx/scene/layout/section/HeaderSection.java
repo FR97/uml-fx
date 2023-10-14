@@ -17,11 +17,8 @@ import javafx.scene.text.FontWeight;
  * Main section of every section pane
  */
 public class HeaderSection extends Section {
-
-
     private final Label lblStereotype;
     private final Label lblText;
-
     private final ObjectProperty<Stereotype> stereotype;
     private final StringProperty text;
 
@@ -70,6 +67,4 @@ public class HeaderSection extends Section {
     public void setText(String text) {
         this.lblText.textProperty().set(text);
     }
-
-
 }
