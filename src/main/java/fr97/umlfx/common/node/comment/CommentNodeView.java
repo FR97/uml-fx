@@ -35,8 +35,6 @@ public class CommentNodeView extends AbstractNodeView {
         createResizeLines(container);
     }
 
-
-
     @Override
     public void setSelected(boolean selected) {
         if(selected)
