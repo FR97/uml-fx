@@ -11,6 +11,7 @@ import fr97.umlfx.common.edge.AbstractEdgeView;
 import fr97.umlfx.common.node.AbstractNodeView;
 import fr97.umlfx.common.node.NodeController;
 import fr97.umlfx.common.node.NodeEditorView;
+import fr97.umlfx.javafx.dialog.Dialogs;
 import fr97.umlfx.math.geometry.Point;
 import fr97.umlfx.workspace.toolbar.Toolbar;
 import javafx.beans.property.ObjectProperty;
@@ -19,6 +20,7 @@ import javafx.collections.ListChangeListener;
 import javafx.embed.swing.SwingFXUtils;
 import javafx.event.ActionEvent;
 import javafx.scene.SnapshotParameters;
+import javafx.scene.control.Alert;
 import javafx.scene.control.ContextMenu;
 import javafx.scene.control.MenuItem;
 import javafx.scene.image.WritableImage;
@@ -198,9 +200,12 @@ public abstract class AbstractDiagramController {
                     ImageIO.write(SwingFXUtils.fromFXImage(image, null), "png", output);
                 }
             } catch (IOException ex) {
-                System.out.println("Couldn't save image " + ex.getMessage());
+                Dialogs.builder()
+                    .setType(Alert.AlertType.ERROR)
+                    .setTitle("Image Save Error")
+                    .setMessage("Couldn't save image " + ex.getMessage())
+                    .show();
             }
-
         });
 
         contextMenu.getItems().addAll(itemEdit, itemCopy, itemPaste, itemDelete, itemTakeSnapshot);
