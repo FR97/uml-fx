@@ -82,18 +82,8 @@ public final class Dialogs {
             dialog.getDialogPane().getButtonTypes().clear();
 
             switch (type) {
-                case NONE:
-                    break;
-                case INFORMATION:
-                    createInformationDialog(dialog);
-                    break;
-                case WARNING:
-                    break;
-                case CONFIRMATION:
-                    createConfirmationDialog(dialog);
-                    break;
-                case ERROR:
-                    break;
+                case INFORMATION -> createInformationDialog(dialog);
+                case CONFIRMATION -> createConfirmationDialog(dialog);
             }
 
             dialog.setTitle(title);
