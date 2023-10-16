@@ -1,12 +1,13 @@
 package fr97.umlfx.common.node.comment;
 
 
+import fr97.umlfx.api.node.UmlEditableNode;
 import fr97.umlfx.common.node.AbstractNode;
 import fr97.umlfx.utils.ArgumentChecker;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class CommentNode extends AbstractNode {
+public class CommentNode extends AbstractNode implements UmlEditableNode<CommentNode> {
 
     private final StringProperty text = new SimpleStringProperty();
 
@@ -47,5 +48,21 @@ public class CommentNode extends AbstractNode {
         copy.setHeightScale(this.getHeightScale());
 
         return copy;
+    }
+
+    @Override
+    public CommentNode toEditable() {
+        return copy();
+    }
+
+    @Override
+    public void applyEdited(CommentNode edited) {
+        this.text.set(edited.getText());
+        this.setWidth(edited.getWidth());
+        this.setHeight(edited.getHeight());
+        this.setTranslateX(edited.getTranslateX());
+        this.setTranslateY(edited.getTranslateY());
+        this.setWidthScale(edited.getWidthScale());
+        this.setHeightScale(edited.getHeightScale());
     }
 }
