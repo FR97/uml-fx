@@ -300,9 +300,9 @@ public abstract class AbstractDiagramController {
     protected abstract void onInitialize();
 
     protected void addNode(UmlNode node) {
-        if (!diagram.containsNode(node))
+        if (!diagram.containsNode(node)){
             commandManager.execute(new NewNodeCommand(node, diagram));
-
+        }
     }
 
 
