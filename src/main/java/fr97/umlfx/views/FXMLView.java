@@ -1,8 +1,10 @@
 package fr97.umlfx.views;
 
+import fr97.umlfx.javafx.dialog.Dialogs;
 import fr97.umlfx.utils.ArgumentChecker;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
+import javafx.scene.control.Alert;
 
 import java.io.IOException;
 
@@ -11,9 +13,7 @@ import java.io.IOException;
  * FXMLView is abstract class that encapsulates common instructions used for instantiating an FXML view file
  * By default it will try to load view with same name as class extending this view, but extending class can call
  * constructor which takes name of file to be used instead of default.
- *
  * So if extending class is called ExampleView then it will look for a file in same directory called ExampleView.fxml
- *
  * This class enforces MVC structure, model must be provided in constructor
  * and controller that implements {@link FXMLController} must be set in fxml file
  * </p>
@@ -67,8 +67,11 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
                 throw new  IllegalStateException("Controller isn't set for " + viewPath);
             controller.setModel(model);
         } catch (IOException ex){
-            System.out.println("Error loading fxml: " + ex.getMessage());
-            ex.printStackTrace();
+            Dialogs.builder()
+                .setType(Alert.AlertType.ERROR)
+                .setTitle("UI Error")
+                .setMessage("System failed to load UI component: " + ex.getMessage())
+                .show();
         }
     }
 
