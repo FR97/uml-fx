@@ -1,12 +1,14 @@
 package fr97.umlfx.classdiagram.node.classnode;
 
 
+import fr97.umlfx.api.node.UmlEditableNode;
 import fr97.umlfx.api.node.UmlNamedNode;
 import fr97.umlfx.common.AccessModifier;
 import fr97.umlfx.common.Field;
 import fr97.umlfx.common.Function;
 import fr97.umlfx.common.Stereotype;
 import fr97.umlfx.common.node.AbstractNode;
+import fr97.umlfx.common.node.comment.CommentNode;
 import javafx.beans.property.ObjectProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
@@ -19,9 +21,8 @@ import java.util.stream.Collectors;
 /**
  * ClassNode is an implementation of {@link fr97.umlfx.api.node.UmlNode}
  * It extends its basic node with additional fields and functions
- *
  */
-public class ClassNode extends AbstractNode implements UmlNamedNode {
+public class ClassNode extends AbstractNode implements UmlNamedNode, UmlEditableNode<ClassNode> {
 
     private final StringProperty name = new SimpleStringProperty(getId());
 
@@ -47,11 +48,11 @@ public class ClassNode extends AbstractNode implements UmlNamedNode {
         return name;
     }
 
-    public ObservableList<Field> getFields(){
+    public ObservableList<Field> getFields() {
         return fields;
     }
 
-    public ObservableList<Function> getFunctions(){
+    public ObservableList<Function> getFunctions() {
         return functions;
     }
 
@@ -79,18 +80,38 @@ public class ClassNode extends AbstractNode implements UmlNamedNode {
         copy.setTranslateY(this.getTranslateY());
         copy.setWidthScale(this.getWidthScale());
         copy.setHeightScale(this.getHeightScale());
-        copy.getFields().addAll(this.getFields().stream().map(Field::copy).collect(Collectors.toList()));
-        copy.getFunctions().addAll(this.getFunctions().stream().map(Function::copy).collect(Collectors.toList()));
+        copy.getFields().addAll(this.getFields().stream().map(Field::copy).toList());
+        copy.getFunctions().addAll(this.getFunctions().stream().map(Function::copy).toList());
         return copy;
     }
 
     @Override
     public String toString() {
         return "ClassNode{" +
-                "name=" + name +
-                "fields=" + fields +
-                "functions=" + functions +
-                "super=" + super.toString() +
-                '}';
+            "name=" + name +
+            "fields=" + fields +
+            "functions=" + functions +
+            "super=" + super.toString() +
+            '}';
     }
+
+    @Override
+    public ClassNode toEditable() {
+        return copy();
+    }
+
+    @Override
+    public void applyEdited(ClassNode edited) {
+        this.setName(edited.getName());
+        this.setStart(edited.getStart().copy());
+        this.setWidth(edited.getWidth());
+        this.setHeight(edited.getHeight());
+        this.setTranslateX(edited.getTranslateX());
+        this.setTranslateY(edited.getTranslateY());
+        this.setWidthScale(edited.getWidthScale());
+        this.setHeightScale(edited.getHeightScale());
+        this.getFields().addAll(edited.getFields().stream().map(Field::copy).toList());
+        this.getFunctions().addAll(edited.getFunctions().stream().map(Function::copy).toList());
+    }
+
 }
