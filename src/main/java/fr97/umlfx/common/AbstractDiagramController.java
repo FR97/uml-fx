@@ -240,11 +240,7 @@ public abstract class AbstractDiagramController {
         Optional<UmlNode> selectedNode = diagram.getNodes().stream()
                 .filter(n -> n.selectedProperty().get())
                 .findFirst();
-        if (selectedNode.isPresent()) {
-            copiedElement.set(selectedNode.get());
-        } else {
-            copiedElement.set(null);
-        }
+        selectedNode.ifPresent(umlNode -> copiedElement.set(umlNode));
     }
 
     private void pasteCopied(ActionEvent actionEvent) {
