@@ -101,9 +101,9 @@ public final class Dialogs {
             dialog.setContentText(message);
 
             Optional<ButtonType> result = dialog.showAndWait();
-            System.out.println("Result: " + result);
-            if (consumer != null)
+            if (consumer != null){
                 result.ifPresent(consumer);
+            }
         }
 
     }
