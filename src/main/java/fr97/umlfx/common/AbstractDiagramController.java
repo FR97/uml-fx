@@ -286,10 +286,10 @@ public abstract class AbstractDiagramController {
     private void deleteSelected(ActionEvent event) {
         List<UmlNode> nodesToDelete = diagram.getNodes().stream()
                 .filter(n -> n.selectedProperty().get())
-                .collect(Collectors.toList());
+                .toList();
         List<UmlEdge> edgesToDelete = diagram.getEdges().stream()
                 .filter(e -> e.selectedProperty().get())
-                .collect(Collectors.toList());
+                .toList();
         diagram.getNodes().removeAll(nodesToDelete);
         diagram.getEdges().removeAll(edgesToDelete);
     }
