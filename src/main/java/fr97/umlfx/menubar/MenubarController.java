@@ -145,9 +145,9 @@ public class MenubarController implements FXMLController<Menubar> {
     /**
      * Changes {@link Locale} to one of the supported locales
      *
-     * @param obs
-     * @param o
-     * @param n
+     * @param obs - observable
+     * @param o - old value
+     * @param n - new vale
      */
     private void toggleLangListener(Observable obs, Toggle o, Toggle n) {
         if (n != null) {
@@ -158,8 +158,8 @@ public class MenubarController implements FXMLController<Menubar> {
             } catch (Exception ex) {
                 Dialogs.builder()
                         .setType(Alert.AlertType.ERROR)
-                        .setTitle("Error changing language")
-                        .setMessage("Couldn't change language, it will be set to default")
+                        .setTitle(Localization.get("dialog.error.title"))
+                        .setMessage(Localization.get("dialog.error.language-change"))
                         .show();
                 Localization.setLocale(Localization.getDefaultLocale());
             }
