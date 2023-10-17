@@ -3,6 +3,7 @@ package fr97.umlfx.app;
 
 import fr97.umlfx.api.UmlDiagram;
 import fr97.umlfx.command.CommandManager;
+import fr97.umlfx.javafx.FXUtils;
 import fr97.umlfx.javafx.dialog.Dialogs;
 import fr97.umlfx.menubar.Menubar;
 import fr97.umlfx.menubar.MenubarView;
@@ -54,20 +55,7 @@ public class App extends Application {
         primaryStage.setMinWidth(800);
         primaryStage.setMinHeight(640);
         primaryStage.setScene(scene);
-        primaryStage.setOnCloseRequest(App::onCloseRequest);
+        primaryStage.setOnCloseRequest(FXUtils::onCloseRequest);
         primaryStage.show();
-    }
-
-    private static void onCloseRequest(WindowEvent event) {
-        Dialogs.builder()
-                .setType(Alert.AlertType.CONFIRMATION)
-                .setTitle(Localization.get("dialog.title"))
-                .setMessage(Localization.get("dialog.exit.message"))
-                .resultHandler(btnType -> {
-                    if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
-                        event.consume();;
-                    }
-                })
-                .show();
     }
 }

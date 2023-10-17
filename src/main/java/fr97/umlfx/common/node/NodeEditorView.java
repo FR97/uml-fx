@@ -10,7 +10,7 @@ import fr97.umlfx.classdiagram.node.packagenode.PackageEditorView;
 import fr97.umlfx.classdiagram.node.packagenode.PackageNode;
 import fr97.umlfx.common.node.comment.CommentEditorView;
 import fr97.umlfx.common.node.comment.CommentNode;
-import fr97.umlfx.javafx.UtilsFX;
+import fr97.umlfx.javafx.FXUtils;
 import fr97.umlfx.views.FXMLView;
 
 import javafx.event.Event;
@@ -87,7 +87,7 @@ public final class NodeEditorView extends FXMLView<BorderPane, UmlNode> {
             UmlNode nodeCopy = editedNode.copy();
             NodeEditorView view = new NodeEditorView(editedNode);
 
-            Stage stage = UtilsFX.createNewStage(owner, Localization.createStringBinding("stage.title.editor"));
+            Stage stage = FXUtils.createNewStage(owner, Localization.createStringBinding("stage.title.editor"));
             Scene scene = new Scene(new StackPane(), 0, 0);
 
             onCancel = onCancel.andThen(e -> {

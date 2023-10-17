@@ -2,7 +2,7 @@ package fr97.umlfx.classdiagram.node.interfacenode;
 
 import fr97.umlfx.common.AccessModifier;
 import fr97.umlfx.common.Function;
-import fr97.umlfx.javafx.UtilsFX;
+import fr97.umlfx.javafx.FXUtils;
 import fr97.umlfx.javafx.scene.control.cell.EditableComboCell;
 import fr97.umlfx.javafx.scene.control.cell.EditableTextCell;
 import fr97.umlfx.views.FXMLController;
@@ -74,7 +74,7 @@ public class InterfaceEditorController implements FXMLController<InterfaceNode> 
                 = (TableColumn<Function, AccessModifier> param) -> new EditableComboCell<>(this::createAccessModifierComboBox);
 
         Callback<TableColumn<Function, Boolean>, TableCell<Function, Boolean>> functionBooleanCellFactory
-                = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(UtilsFX::createBooleanComboBox);
+                = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
 
         Callback<TableColumn<Function, ObservableMap<String, String>>, TableCell<Function, ObservableMap<String, String>>> functionParameterCellFactory
                 = (TableColumn<Function, ObservableMap<String, String>> param) -> new EditableTextCell<>((str -> {
@@ -107,7 +107,7 @@ public class InterfaceEditorController implements FXMLController<InterfaceNode> 
         functionAccessModifier.setCellFactory(functionAccessModifierCellFactory);
         btnRemoveFunction.disableProperty().bind(tableFunctions.getSelectionModel().selectedItemProperty().isNull());
 
-        UtilsFX.makeEditableTable(tableFunctions);
+        FXUtils.makeEditableTable(tableFunctions);
     }
 
     private ComboBox<AccessModifier> createAccessModifierComboBox() {

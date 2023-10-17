@@ -3,7 +3,7 @@ package fr97.umlfx.classdiagram.node.classnode;
 import fr97.umlfx.common.AccessModifier;
 import fr97.umlfx.common.Field;
 import fr97.umlfx.common.Function;
-import fr97.umlfx.javafx.UtilsFX;
+import fr97.umlfx.javafx.FXUtils;
 import fr97.umlfx.javafx.scene.control.cell.EditableComboCell;
 import fr97.umlfx.javafx.scene.control.cell.EditableTextCell;
 import fr97.umlfx.views.FXMLController;
@@ -82,19 +82,19 @@ public class ClassEditorController implements FXMLController<ClassNode> {
                 = (TableColumn<Field, String> param) -> new EditableTextCell<>((str -> str));
 
         Callback<TableColumn<Field, Boolean>, TableCell<Field, Boolean>> fieldBooleanCellFactory
-                = (TableColumn<Field, Boolean> param) -> new EditableComboCell<>(UtilsFX::createBooleanComboBox);
+                = (TableColumn<Field, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
 
         Callback<TableColumn<Field, AccessModifier>, TableCell<Field, AccessModifier>> fieldAccessModifierCellFactory
-                = (TableColumn<Field, AccessModifier> param) -> new EditableComboCell<>(UtilsFX::createAccessModifierComboBox);
+                = (TableColumn<Field, AccessModifier> param) -> new EditableComboCell<>(FXUtils::createAccessModifierComboBox);
 
         Callback<TableColumn<Function, String>, TableCell<Function, String>> functionStringCellFactory
                 = (TableColumn<Function, String> param) -> new EditableTextCell<>((str -> str));
 
         Callback<TableColumn<Function, AccessModifier>, TableCell<Function, AccessModifier>> functionAccessModifierCellFactory
-                = (TableColumn<Function, AccessModifier> param) -> new EditableComboCell<>(UtilsFX::createAccessModifierComboBox);
+                = (TableColumn<Function, AccessModifier> param) -> new EditableComboCell<>(FXUtils::createAccessModifierComboBox);
 
         Callback<TableColumn<Function, Boolean>, TableCell<Function, Boolean>> functionBooleanCellFactory
-                = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(UtilsFX::createBooleanComboBox);
+                = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
 
         Callback<TableColumn<Function, ObservableMap<String, String>>, TableCell<Function, ObservableMap<String, String>>> functionParameterCellFactory
                 = (TableColumn<Function, ObservableMap<String, String>> param) -> new EditableTextCell<>((str -> {
@@ -141,8 +141,8 @@ public class ClassEditorController implements FXMLController<ClassNode> {
         btnRemoveField.disableProperty().bind(tableFields.getSelectionModel().selectedItemProperty().isNull());
         btnRemoveFunction.disableProperty().bind(tableFunctions.getSelectionModel().selectedItemProperty().isNull());
 
-        UtilsFX.makeEditableTable(tableFields);
-        UtilsFX.makeEditableTable(tableFunctions);
+        FXUtils.makeEditableTable(tableFields);
+        FXUtils.makeEditableTable(tableFunctions);
     }
 
 

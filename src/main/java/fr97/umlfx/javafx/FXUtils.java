@@ -1,17 +1,15 @@
 package fr97.umlfx.javafx;
 
+import fr97.umlfx.app.Localization;
 import fr97.umlfx.common.AccessModifier;
+import fr97.umlfx.javafx.dialog.Dialogs;
 import javafx.beans.binding.StringBinding;
 import javafx.collections.FXCollections;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TablePosition;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.input.KeyCode;
 import javafx.stage.Modality;
 import javafx.stage.Stage;
-
-import java.util.Collection;
+import javafx.stage.WindowEvent;
 
 /**
  *
@@ -19,7 +17,7 @@ import java.util.Collection;
  *
  * @author Filip
  */
-public class UtilsFX {
+public class FXUtils {
 
 
     /**
@@ -36,6 +34,23 @@ public class UtilsFX {
         }
 
         return newStage;
+    }
+
+    /**
+     * Handler for close request
+     * @param event WindowEvent sent by JavaFX close request
+     */
+    public static void onCloseRequest(WindowEvent event) {
+        Dialogs.builder()
+            .setType(Alert.AlertType.CONFIRMATION)
+            .setTitle(Localization.get("dialog.title"))
+            .setMessage(Localization.get("dialog.exit.message"))
+            .resultHandler(btnType -> {
+                if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
+                    event.consume();;
+                }
+            })
+            .show();
     }
 
     /**
