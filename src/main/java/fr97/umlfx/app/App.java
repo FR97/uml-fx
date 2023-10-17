@@ -61,13 +61,12 @@ public class App extends Application {
     private static void onCloseRequest(WindowEvent event) {
         Dialogs.builder()
                 .setType(Alert.AlertType.CONFIRMATION)
-                .setTitle("UmlFX Dialog")
-                .setMessage("Are you sure you want to exit?")
+                .setTitle(Localization.get("dialog.title"))
+                .setMessage(Localization.get("dialog.exit.message"))
                 .resultHandler(btnType -> {
-                    if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE)
-                        event.consume();
-                    else
-                        System.out.println("Closing application");
+                    if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
+                        event.consume();;
+                    }
                 })
                 .show();
     }
