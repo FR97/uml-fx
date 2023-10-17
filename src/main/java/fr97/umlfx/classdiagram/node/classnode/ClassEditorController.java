@@ -79,25 +79,25 @@ public class ClassEditorController implements FXMLController<ClassNode> {
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         Callback<TableColumn<Field, String>, TableCell<Field, String>> fieldStringCellFactory
-                = (TableColumn<Field, String> param) -> new EditableTextCell<>((str -> str));
+            = (TableColumn<Field, String> param) -> new EditableTextCell<>((str -> str));
 
         Callback<TableColumn<Field, Boolean>, TableCell<Field, Boolean>> fieldBooleanCellFactory
-                = (TableColumn<Field, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
+            = (TableColumn<Field, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
 
         Callback<TableColumn<Field, AccessModifier>, TableCell<Field, AccessModifier>> fieldAccessModifierCellFactory
-                = (TableColumn<Field, AccessModifier> param) -> new EditableComboCell<>(FXUtils::createAccessModifierComboBox);
+            = (TableColumn<Field, AccessModifier> param) -> new EditableComboCell<>(this::createAccessModifierComboBox);
 
         Callback<TableColumn<Function, String>, TableCell<Function, String>> functionStringCellFactory
-                = (TableColumn<Function, String> param) -> new EditableTextCell<>((str -> str));
+            = (TableColumn<Function, String> param) -> new EditableTextCell<>((str -> str));
 
         Callback<TableColumn<Function, AccessModifier>, TableCell<Function, AccessModifier>> functionAccessModifierCellFactory
-                = (TableColumn<Function, AccessModifier> param) -> new EditableComboCell<>(FXUtils::createAccessModifierComboBox);
+            = (TableColumn<Function, AccessModifier> param) -> new EditableComboCell<>(this::createAccessModifierComboBox);
 
         Callback<TableColumn<Function, Boolean>, TableCell<Function, Boolean>> functionBooleanCellFactory
-                = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
+            = (TableColumn<Function, Boolean> param) -> new EditableComboCell<>(FXUtils::createBooleanComboBox);
 
         Callback<TableColumn<Function, ObservableMap<String, String>>, TableCell<Function, ObservableMap<String, String>>> functionParameterCellFactory
-                = (TableColumn<Function, ObservableMap<String, String>> param) -> new EditableTextCell<>((str -> {
+            = (TableColumn<Function, ObservableMap<String, String>> param) -> new EditableTextCell<>((str -> {
             ObservableMap<String, String> map = FXCollections.observableHashMap();
             str = str.replace("{", "").replace("}", "");
             String[] parameters = str.split(", ");
@@ -171,6 +171,10 @@ public class ClassEditorController implements FXMLController<ClassNode> {
     private void removeFunction() {
         Function fieldToRemove = tableFunctions.getSelectionModel().getSelectedItem();
         node.getFunctions().remove(fieldToRemove);
+    }
+
+    private ComboBox<AccessModifier> createAccessModifierComboBox() {
+        return FXUtils.createEnumComboBox(AccessModifier.class);
     }
 
 }

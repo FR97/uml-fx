@@ -12,7 +12,6 @@ import javafx.stage.Stage;
 import javafx.stage.WindowEvent;
 
 /**
- *
  * Class with some utility static methods that are used to builder some common JavaFX elements
  *
  * @author Filip
@@ -22,6 +21,7 @@ public class FXUtils {
 
     /**
      * Creates new stage with given owner
+     *
      * @param owner owner of stage, can be null
      * @return new Stage
      */
@@ -38,6 +38,7 @@ public class FXUtils {
 
     /**
      * Handler for close request
+     *
      * @param event WindowEvent sent by JavaFX close request
      */
     public static void onCloseRequest(WindowEvent event) {
@@ -46,8 +47,9 @@ public class FXUtils {
             .setTitle(Localization.get("dialog.title"))
             .setMessage(Localization.get("dialog.exit.message"))
             .resultHandler(btnType -> {
-                if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE){
-                    event.consume();;
+                if (btnType.getButtonData() == ButtonBar.ButtonData.CANCEL_CLOSE) {
+                    event.consume();
+                    ;
                 }
             })
             .show();
@@ -55,6 +57,7 @@ public class FXUtils {
 
     /**
      * Creates {@link ComboBox} with true and false choice
+     *
      * @return combobox with true and false choice
      */
     public static ComboBox<Boolean> createBooleanComboBox() {
@@ -65,20 +68,22 @@ public class FXUtils {
 
     /**
      * Creates {@link ComboBox} containing {@link AccessModifier}
+     *
      * @return combobox with AccessModifier values
      */
-    public static ComboBox<AccessModifier> createAccessModifierComboBox() {
-        ComboBox<AccessModifier> comboBox = new ComboBox<>(FXCollections.observableArrayList(AccessModifier.values()));
+    public static <S extends Enum<S>> ComboBox<S> createEnumComboBox(Class<S> clazz) {
+        ComboBox<S> comboBox = new ComboBox<>(FXCollections.observableArrayList(clazz.getEnumConstants()));
         comboBox.setPrefWidth(40);
         return comboBox;
     }
 
     /**
      * Performs necessary operations on table to make its cells editable
+     *
      * @param table table to make editable
-     * @param <S> type of value that table holds
+     * @param <S>   type of value that table holds
      */
-    public static  <S> void makeEditableTable(TableView<S> table) {
+    public static <S> void makeEditableTable(TableView<S> table) {
 
         table.setEditable(true);
 
@@ -87,7 +92,7 @@ public class FXUtils {
             if (event.getCode().isLetterKey() || event.getCode().isDigitKey()) {
                 editFocusedCell(table);
             } else if (event.getCode() == KeyCode.RIGHT
-                    || event.getCode() == KeyCode.TAB) {
+                || event.getCode() == KeyCode.TAB) {
                 table.getSelectionModel().selectNext();
                 event.consume();
             } else if (event.getCode() == KeyCode.LEFT) {
@@ -98,20 +103,20 @@ public class FXUtils {
     }
 
     @SuppressWarnings("unchecked")
-    private static  <S> void editFocusedCell(TableView<S> table) {
+    private static <S> void editFocusedCell(TableView<S> table) {
         final TablePosition<S, ?> focusedCell = table.focusModelProperty().get().focusedCellProperty().get();
         table.edit(focusedCell.getRow(), focusedCell.getTableColumn());
     }
 
     @SuppressWarnings("unchecked")
-    private static  <S> void selectPrevious(TableView<S> table) {
+    private static <S> void selectPrevious(TableView<S> table) {
         if (table.getSelectionModel().isCellSelectionEnabled()) {
             TablePosition<S, ?> pos = table.getFocusModel().getFocusedCell();
             if (pos.getColumn() - 1 >= 0) {
                 table.getSelectionModel().select(pos.getRow(), getTableColumn(table, pos.getTableColumn()));
             } else if (pos.getRow() < table.getItems().size()) {
                 table.getSelectionModel().select(pos.getRow() - 1,
-                        table.getVisibleLeafColumn(table.getVisibleLeafColumns().size() - 1));
+                    table.getVisibleLeafColumn(table.getVisibleLeafColumns().size() - 1));
             }
         } else {
             int focusIndex = table.getFocusModel().getFocusedIndex();
@@ -122,7 +127,7 @@ public class FXUtils {
         }
     }
 
-    private static  <S> TableColumn<S, ?> getTableColumn(TableView<S> table, final TableColumn<S, ?> column) {
+    private static <S> TableColumn<S, ?> getTableColumn(TableView<S> table, final TableColumn<S, ?> column) {
         int columnIndex = table.getVisibleLeafIndex(column);
         int newColumnIndex = columnIndex - 1;
         return table.getVisibleLeafColumn(newColumnIndex);
