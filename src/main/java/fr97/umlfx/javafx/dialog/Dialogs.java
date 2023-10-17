@@ -98,11 +98,11 @@ public final class Dialogs {
 
     }
 
-    private static void createInformationDialog(Dialog dialog) {
+    private static void createInformationDialog(Dialog<ButtonType> dialog) {
         dialog.getDialogPane().getButtonTypes().addAll(createLocalizedButton(ButtonData.OK_DONE, "dialog.btn.ok"));
     }
 
-    private static void createConfirmationDialog(Dialog dialog) {
+    private static void createConfirmationDialog(Dialog<ButtonType> dialog) {
         dialog.getDialogPane().getButtonTypes().addAll(
                 createLocalizedButton(ButtonData.OK_DONE, "dialog.btn.ok"),
                 createLocalizedButton(ButtonData.CANCEL_CLOSE, "dialog.btn.cancel")
