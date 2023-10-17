@@ -64,8 +64,9 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
         try{
             root = loader.load();
             controller = loader.getController();
-            if(controller == null)
+            if(controller == null){
                 throw new  IllegalStateException("Controller isn't set for " + viewPath);
+            }
             controller.setModel(model);
         } catch (IOException ex){
             Dialogs.builder()
