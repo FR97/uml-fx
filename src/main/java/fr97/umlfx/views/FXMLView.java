@@ -1,5 +1,6 @@
 package fr97.umlfx.views;
 
+import fr97.umlfx.app.Localization;
 import fr97.umlfx.javafx.dialog.Dialogs;
 import fr97.umlfx.utils.ArgumentChecker;
 import javafx.fxml.FXMLLoader;
@@ -69,8 +70,8 @@ public abstract class FXMLView<N extends Node, M> implements View<N> {
         } catch (IOException ex){
             Dialogs.builder()
                 .setType(Alert.AlertType.ERROR)
-                .setTitle("UI Error")
-                .setMessage("System failed to load UI component: " + ex.getMessage())
+                .setTitle(Localization.get("dialog.error.title"))
+                .setMessage(Localization.get("dialog.error.load-view"))
                 .show();
         }
     }
