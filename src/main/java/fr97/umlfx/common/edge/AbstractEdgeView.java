@@ -155,8 +155,9 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         head.translateYProperty().addListener(this::calculatePositions);
 
         edge.selectedProperty().addListener((obs, oldValue, newValue)->{
-            if(oldValue != newValue)
+            if(oldValue != newValue){
                 setSelected(newValue);
+            }
         });
 
         edge.getTailMultiplicity().umlNotationBinding().addListener(((obs, oldValue, newValue) -> {
@@ -180,16 +181,19 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         }));
 
         headLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY)
+            if(event.getButton() == MouseButton.PRIMARY){
                 edge.selectedProperty().set(!selectedProperty().get());
+            }
         });
         middleLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY)
+            if(event.getButton() == MouseButton.PRIMARY){
                 edge.selectedProperty().set(!selectedProperty().get());
+            }
         });
         tailLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY)
+            if(event.getButton() == MouseButton.PRIMARY){
                 edge.selectedProperty().set(!selectedProperty().get());
+            }
         });
 
     }
