@@ -37,10 +37,11 @@ public class CommentNodeView extends AbstractNodeView {
 
     @Override
     public void setSelected(boolean selected) {
-        if (selected)
+        if (selected){
             container.setBorder(Theme.getDefaultTheme().selectedBorderProperty().get());
-        else
+        } else{
             container.setBorder(Theme.getDefaultTheme().borderProperty().get());
+        }
     }
 
     @Override
