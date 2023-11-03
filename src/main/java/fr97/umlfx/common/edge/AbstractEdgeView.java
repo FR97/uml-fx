@@ -58,7 +58,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     private final ObjectProperty<Paint> stroke = new SimpleObjectProperty<>(Color.BLACK);
     private final DoubleProperty strokeWidth = new SimpleDoubleProperty(1);
 
-    private BooleanProperty selected = new SimpleBooleanProperty(false);
+    private final BooleanProperty selected = new SimpleBooleanProperty(false);
 
     protected Side side = Side.NONE;
 

@@ -12,7 +12,7 @@ public class CommentNodeView extends AbstractNodeView {
     private final StackPane container = new StackPane();
     private final TextArea textArea = new TextArea();
 
-    public CommentNodeView(CommentNode node){
+    public CommentNodeView(CommentNode node) {
         super(node);
 
         container.setPadding(new Insets(10, 10, 10, 10));
@@ -20,14 +20,14 @@ public class CommentNodeView extends AbstractNodeView {
         container.prefHeightProperty().bind(node.heightProperty());
         container.maxWidthProperty().bind(node.widthProperty());
         container.maxHeightProperty().bind(node.heightProperty());
-        container.setBorder(Theme.DEFAULT_THEME.borderProperty.get());
+        container.setBorder(Theme.getDefaultTheme().borderProperty().get());
         container.getStyleClass().add("comment-stack");
 
         textArea.textProperty().bindBidirectional(node.textProperty());
         textArea.prefWidthProperty().bind(node.widthProperty().subtract(10));
         textArea.prefHeightProperty().bind(node.widthProperty().subtract(10));
-        textArea.setPadding(new Insets(5, 5,5,5));
-        textArea.setFont(Theme.DEFAULT_THEME.fontProperty.get());
+        textArea.setPadding(new Insets(5, 5, 5, 5));
+        textArea.setFont(Theme.getDefaultTheme().fontProperty().get());
         textArea.setWrapText(true);
 
         container.getChildren().add(textArea);
@@ -37,10 +37,10 @@ public class CommentNodeView extends AbstractNodeView {
 
     @Override
     public void setSelected(boolean selected) {
-        if(selected)
-            container.setBorder(Theme.DEFAULT_THEME.selectedBorderProperty.get());
+        if (selected)
+            container.setBorder(Theme.getDefaultTheme().selectedBorderProperty().get());
         else
-            container.setBorder(Theme.DEFAULT_THEME.borderProperty.get());
+            container.setBorder(Theme.getDefaultTheme().borderProperty().get());
     }
 
     @Override
