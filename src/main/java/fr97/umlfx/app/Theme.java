@@ -19,7 +19,7 @@ public class Theme {
 
     private SimpleObjectProperty<Paint> borderColor = new SimpleObjectProperty<>(Color.BLACK);
     private SimpleObjectProperty<Border> border = new SimpleObjectProperty<>(createBorder(Color.BLACK, 1));
-    private SimpleObjectProperty<Border> selectedBorder = new SimpleObjectProperty<>(createBorder(Color.RED, 8));
+    private SimpleObjectProperty<Border> selectedBorder = new SimpleObjectProperty<>(createBorder(Color.RED, 16));
 
     private SimpleObjectProperty<Font> font = new SimpleObjectProperty<>(Font.font("Arial", 12));
     private SimpleObjectProperty<Font> boldFont = new SimpleObjectProperty<>(Font.font("Arial", FontWeight.BOLD, 16));
