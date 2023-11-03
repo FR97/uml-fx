@@ -20,14 +20,14 @@ public class CommentNodeView extends AbstractNodeView {
         container.prefHeightProperty().bind(node.heightProperty());
         container.maxWidthProperty().bind(node.widthProperty());
         container.maxHeightProperty().bind(node.heightProperty());
-        container.setBorder(Theme.getDefaultTheme().borderProperty().get());
+        container.borderProperty().bind(Theme.getDefaultTheme().borderProperty());
         container.getStyleClass().add("comment-stack");
 
         textArea.textProperty().bindBidirectional(node.textProperty());
         textArea.prefWidthProperty().bind(node.widthProperty().subtract(10));
         textArea.prefHeightProperty().bind(node.widthProperty().subtract(10));
         textArea.setPadding(new Insets(5, 5, 5, 5));
-        textArea.setFont(Theme.getDefaultTheme().fontProperty().get());
+        textArea.fontProperty().bind(Theme.getDefaultTheme().fontProperty());
         textArea.setWrapText(true);
 
         container.getChildren().add(textArea);
@@ -37,10 +37,11 @@ public class CommentNodeView extends AbstractNodeView {
 
     @Override
     public void setSelected(boolean selected) {
+        container.borderProperty().unbind();
         if (selected){
-            container.setBorder(Theme.getDefaultTheme().selectedBorderProperty().get());
+            container.borderProperty().bind(Theme.getDefaultTheme().selectedBorderProperty());
         } else{
-            container.setBorder(Theme.getDefaultTheme().borderProperty().get());
+            container.borderProperty().bind(Theme.getDefaultTheme().borderProperty());
         }
     }
 
