@@ -7,8 +7,6 @@ public class ClassEditorView extends FXMLView<StackPane,ClassNode> {
 
     public ClassEditorView(ClassNode model) throws IllegalStateException, IllegalArgumentException {
         super(model);
-
     }
-
 
 }
