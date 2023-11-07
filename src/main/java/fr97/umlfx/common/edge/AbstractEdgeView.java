@@ -201,25 +201,22 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     private void updateShape(){
         getChildren().removeIf(node -> "shape".equals(node.getUserData()));
         switch (edge.getDirection()) {
-            case NONE:
-                break;
-            case TAIL_TO_HEAD: // Adds shape to head side
+            case TAIL_TO_HEAD -> // Adds shape to head side
                 getChildren().add(createShape(
-                        getHeadLine().getEndX(), getHeadLine().getEndY(),
-                        getHeadLine().getStartX(), getHeadLine().getStartY()));
-                break;
-            case HEAD_TO_TAIL: // Adds shape to tail side
+                    getHeadLine().getEndX(), getHeadLine().getEndY(),
+                    getHeadLine().getStartX(), getHeadLine().getStartY()));
+            case HEAD_TO_TAIL -> // Adds shape to tail side
                 getChildren().add(createShape(
-                        getTailLine().getStartX(), getTailLine().getStartY(),
-                        getTailLine().getEndX(), getTailLine().getEndY()));
-                break;
-            case BIDIRECTIONAL: // Adds shape to both sides
+                    getTailLine().getStartX(), getTailLine().getStartY(),
+                    getTailLine().getEndX(), getTailLine().getEndY()));
+            case BIDIRECTIONAL -> // Adds shape to both sides
                 getChildren().addAll(
-                        createShape(getHeadLine().getEndX(), getHeadLine().getEndY(),
-                                getHeadLine().getStartX(), getHeadLine().getStartY()),
-                        createShape(getTailLine().getStartX(), getTailLine().getStartY(),
-                                getTailLine().getEndX(), getTailLine().getEndY()));
-                break;
+                    createShape(getHeadLine().getEndX(), getHeadLine().getEndY(),
+                        getHeadLine().getStartX(), getHeadLine().getStartY()),
+                    createShape(getTailLine().getStartX(), getTailLine().getStartY(),
+                        getTailLine().getEndX(), getTailLine().getEndY()));
+            case NONE -> {
+            }
         }
     }
 
@@ -228,18 +225,10 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
      */
     protected void updateText(){
         switch (side) {
-            case EAST:
-                updateTextEast();
-                break;
-            case WEST:
-                updateTextWest();
-                break;
-            case NORTH:
-                updateTextNorth();
-                break;
-            case SOUTH:
-                updateTextSouth();
-                break;
+            case EAST -> updateTextEast();
+            case WEST -> updateTextWest();
+            case NORTH -> updateTextNorth();
+            case SOUTH -> updateTextSouth();
         }
         tailMult.toFront();
         headMult.toFront();
