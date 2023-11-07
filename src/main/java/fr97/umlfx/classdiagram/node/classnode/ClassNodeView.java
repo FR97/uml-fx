@@ -21,7 +21,6 @@ public class ClassNodeView extends AbstractNodeView {
         super(node);
 
         bindWithNode(node);
-        //container.getChildren().addAll(/*rectangle,*/ sectionPane);
         getChildren().add(sectionPane);
         createResizeLines(sectionPane);
     }
