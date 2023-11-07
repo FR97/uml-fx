@@ -31,8 +31,9 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
     }
 
     public InterfaceNode(String name) {
-        if (name != null)
+        if (name != null){
             this.name.set(name);
+        }
     }
 
     /**
@@ -59,7 +60,6 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
         return functions.remove(function);
     }
 
-
     public Stereotype getStereotype() {
         return stereotype.get();
     }
@@ -77,7 +77,6 @@ public class InterfaceNode extends AbstractNode implements UmlNamedNode {
      */
     @Override
     public InterfaceNode copy() {
-
         InterfaceNode copy = new InterfaceNode(name.get());
 
         copy.setStart(this.getStart().copy());

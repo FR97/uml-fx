@@ -70,7 +70,6 @@ public class ClassNode extends AbstractNode implements UmlNamedNode, UmlEditable
 
     @Override
     public ClassNode copy() {
-
         ClassNode copy = new ClassNode(name.get());
 
         copy.setStart(this.getStart().copy());
@@ -82,6 +81,7 @@ public class ClassNode extends AbstractNode implements UmlNamedNode, UmlEditable
         copy.setHeightScale(this.getHeightScale());
         copy.getFields().addAll(this.getFields().stream().map(Field::copy).toList());
         copy.getFunctions().addAll(this.getFunctions().stream().map(Function::copy).toList());
+
         return copy;
     }
 
