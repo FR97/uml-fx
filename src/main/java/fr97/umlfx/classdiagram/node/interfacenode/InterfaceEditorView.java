@@ -10,5 +10,4 @@ public class InterfaceEditorView extends FXMLView<StackPane, InterfaceNode> {
         super(model);
     }
 
-
 }
