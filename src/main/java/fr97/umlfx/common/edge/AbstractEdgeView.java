@@ -65,36 +65,38 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     /**
      * Factory method that provides correct implementation of AbstactEdgeView
      * based on given edge
+     *
      * @param edge given edge
-     * @throws IllegalArgumentException if edge is null or there isn't view for such edge
      * @return AbstractEdgeView that corresponds to given edge
+     * @throws IllegalArgumentException if edge is null or there isn't view for such edge
      */
-    public static AbstractEdgeView of(UmlEdge edge) throws IllegalArgumentException{
+    public static AbstractEdgeView of(UmlEdge edge) throws IllegalArgumentException {
         ArgumentChecker.notNull(edge, "edge can't be null");
-        if(edge instanceof CommentEdge){
-            return new CommentEdgeView((CommentEdge)edge);
-        } else if(edge instanceof DependancyEdge){
-            return new DependancyEdgeView((DependancyEdge)edge);
-        } else if(edge instanceof AssociationEdge){
-            return new AssociationEdgeView((AssociationEdge)edge);
-        } else if(edge instanceof AggregationEdge){
-            return new AggregationEdgeView((AggregationEdge)edge);
-        } else if(edge instanceof CompositionEdge){
-            return new CompositionEdgeView((CompositionEdge)edge);
-        } else if(edge instanceof InheritanceEdge){
-            return new InheritanceEdgeView((InheritanceEdge)edge);
-        } else if(edge instanceof RealizationEdge){
-            return new RealizationEdgeView((RealizationEdge)edge);
+        if (edge instanceof CommentEdge) {
+            return new CommentEdgeView((CommentEdge) edge);
+        } else if (edge instanceof DependancyEdge) {
+            return new DependancyEdgeView((DependancyEdge) edge);
+        } else if (edge instanceof AssociationEdge) {
+            return new AssociationEdgeView((AssociationEdge) edge);
+        } else if (edge instanceof AggregationEdge) {
+            return new AggregationEdgeView((AggregationEdge) edge);
+        } else if (edge instanceof CompositionEdge) {
+            return new CompositionEdgeView((CompositionEdge) edge);
+        } else if (edge instanceof InheritanceEdge) {
+            return new InheritanceEdgeView((InheritanceEdge) edge);
+        } else if (edge instanceof RealizationEdge) {
+            return new RealizationEdgeView((RealizationEdge) edge);
         }
         throw new IllegalStateException("Couldn't builder view for given edge " + edge);
     }
 
     /**
      * Creates visual representation of given {@link UmlEdge}
+     *
      * @param edge given edge
      * @throws IllegalArgumentException if given edge is null
      */
-    protected AbstractEdgeView(UmlEdge edge) throws IllegalArgumentException{
+    protected AbstractEdgeView(UmlEdge edge) throws IllegalArgumentException {
         ArgumentChecker.notNull(edge, "edge can't be null");
         this.edge = edge;
         instanceCounter++;
@@ -112,7 +114,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     /**
      * Updates line and text positions
      */
-    protected final void update(){
+    protected final void update() {
         getChildren().clear();
         shapeLines.clear();
         getChildren().addAll(tailLine, middleLine, headLine, tailMult, middleLabel, headMult);
@@ -128,10 +130,11 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
 
     /**
      * Extending classes should override this method to change displayed shape at the end of the lines
+     *
      * @param startX starting x coordinate of shape
      * @param startY starting y coordinate of shape
-     * @param endX ending x coordinate of shape
-     * @param endY ending y coordinate of shape
+     * @param endX   ending x coordinate of shape
+     * @param endY   ending y coordinate of shape
      * @return {@link Group} which contains all necessary elements to draw shape
      */
     protected abstract Group createShape(double startX, double startY, double endX, double endY);
@@ -139,7 +142,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     /**
      * Binds all necessary properties
      */
-    private void createBindings(){
+    private void createBindings() {
 
         UmlNode tail = edge.getTail();
         UmlNode head = edge.getHead();
@@ -154,51 +157,51 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         head.translateXProperty().addListener(this::calculatePositions);
         head.translateYProperty().addListener(this::calculatePositions);
 
-        edge.selectedProperty().addListener((obs, oldValue, newValue)->{
-            if(oldValue != newValue){
+        edge.selectedProperty().addListener((obs, oldValue, newValue) -> {
+            if (oldValue != newValue) {
                 setSelected(newValue);
             }
         });
 
         edge.getTailMultiplicity().umlNotationBinding().addListener(((obs, oldValue, newValue) -> {
-            if(oldValue != null && !oldValue.equals(newValue)){
+            if (oldValue != null && !oldValue.equals(newValue)) {
                 tailMult.setText(newValue);
                 updateText();
             }
         }));
         edge.getHeadMultiplicity().umlNotationBinding().addListener(((obs, oldValue, newValue) -> {
-            if(oldValue != null && !oldValue.equals(newValue)){
+            if (oldValue != null && !oldValue.equals(newValue)) {
                 headMult.setText(newValue);
                 updateText();
             }
         }));
 
         edge.labelProperty().addListener(((obs, oldValue, newValue) -> {
-            if(oldValue != null && !oldValue.equals(newValue)){
+            if (oldValue != null && !oldValue.equals(newValue)) {
                 middleLabel.setText(newValue);
                 updateText();
             }
         }));
 
         headLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY){
+            if (event.getButton() == MouseButton.PRIMARY) {
                 edge.selectedProperty().set(!selectedProperty().get());
             }
         });
         middleLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY){
+            if (event.getButton() == MouseButton.PRIMARY) {
                 edge.selectedProperty().set(!selectedProperty().get());
             }
         });
         tailLine.setOnMousePressed(event -> {
-            if(event.getButton() == MouseButton.PRIMARY){
+            if (event.getButton() == MouseButton.PRIMARY) {
                 edge.selectedProperty().set(!selectedProperty().get());
             }
         });
 
     }
 
-    private void updateShape(){
+    private void updateShape() {
         getChildren().removeIf(node -> "shape".equals(node.getUserData()));
         switch (edge.getDirection()) {
             case TAIL_TO_HEAD -> // Adds shape to head side
@@ -223,7 +226,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     /**
      * Updates positions of text
      */
-    protected void updateText(){
+    protected void updateText() {
         switch (side) {
             case EAST -> updateTextEast();
             case WEST -> updateTextWest();
@@ -240,7 +243,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         tailMult.setY(tailLine.getStartY() + OFFSET);
         headMult.setX(headLine.getEndX() + OFFSET);
         headMult.setY(headLine.getEndY() - OFFSET);
-        middleLabel.setX((edge.getTail().getStartX()  + edge.getHead().getStartX())/2 + OFFSET);
+        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX()) / 2 + OFFSET);
         middleLabel.setY(middleLine.getEndY() + OFFSET);
     }
 
@@ -249,43 +252,44 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
         tailMult.setY(tailLine.getStartY() - OFFSET);
         headMult.setX(headLine.getEndX() + OFFSET);
         headMult.setY(headLine.getEndY() + OFFSET);
-        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX())/2 + OFFSET);
+        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX()) / 2 + OFFSET);
         middleLabel.setY(middleLine.getEndY() + OFFSET);
     }
 
     private void updateTextWest() {
-        tailMult.setX(tailLine.getStartX() - OFFSET - tailMult.getText().length() -5);
+        tailMult.setX(tailLine.getStartX() - OFFSET - tailMult.getText().length() - 5);
         tailMult.setY(tailLine.getStartY() + OFFSET);
         headMult.setX(headLine.getEndX() + OFFSET);
         headMult.setY(headLine.getEndY() + OFFSET);
-        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX())/2 + OFFSET);
+        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX()) / 2 + OFFSET);
         middleLabel.setY(headLine.getEndY() + OFFSET);
     }
 
     private void updateTextEast() {
         tailMult.setX(tailLine.getStartX() + OFFSET);
         tailMult.setY(tailLine.getStartY() + OFFSET);
-        headMult.setX(headLine.getEndX() - OFFSET - headMult.getText().length() -5);
+        headMult.setX(headLine.getEndX() - OFFSET - headMult.getText().length() - 5);
         headMult.setY(headLine.getEndY() + OFFSET);
-        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX())/2);
+        middleLabel.setX((edge.getTail().getStartX() + edge.getHead().getStartX()) / 2);
         middleLabel.setY(headLine.getEndY() + OFFSET);
     }
 
     /**
      * Calculates positions of lines based on positions of 2 nodes that this edge connects,
      * currently it only puts line on middle of closest side.
-     * @param obs not used, can be null
+     *
+     * @param obs      not used, can be null
      * @param oldValue not used, can be null
      * @param newValue not used, can be null
      */
-    public void calculatePositions(Observable obs, Number oldValue, Number newValue){
+    public void calculatePositions(Observable obs, Number oldValue, Number newValue) {
         UmlNode tailNode = edge.getTail();
         UmlNode headNode = edge.getHead();
 
         //If headNode is east of tailNode:
         if (tailNode.getTranslateX() + tailNode.getWidth() <= headNode.getTranslateX()) {
             //Straight line if height difference is small
-            if(Math.abs(tailNode.getTranslateY() + (tailNode.getHeight()/2) - (headNode.getTranslateY() + (headNode.getHeight()/2))) < 0){
+            if (Math.abs(tailNode.getTranslateY() + (tailNode.getHeight() / 2) - (headNode.getTranslateY() + (headNode.getHeight() / 2))) < 0) {
                 tailLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
                 tailLine.setEndX(headNode.getTranslateX());
@@ -303,15 +307,15 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
             } else {
                 tailLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
-                tailLine.setEndX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth()))/2));
+                tailLine.setEndX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth())) / 2));
                 tailLine.setEndY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
 
-                middleLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth()))/2));
+                middleLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth())) / 2));
                 middleLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
-                middleLine.setEndX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth()))/2));
+                middleLine.setEndX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth())) / 2));
                 middleLine.setEndY(headNode.getTranslateY() + (headNode.getHeight() / 2));
 
-                headLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth()))/2));
+                headLine.setStartX(tailNode.getTranslateX() + tailNode.getWidth() + ((headNode.getTranslateX() - (tailNode.getTranslateX() + tailNode.getWidth())) / 2));
                 headLine.setStartY(headNode.getTranslateY() + (headNode.getHeight() / 2));
                 headLine.setEndX(headNode.getTranslateX());
                 headLine.setEndY(headNode.getTranslateY() + (headNode.getHeight() / 2));
@@ -319,7 +323,7 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
 
             side = Side.EAST;
         } else if (tailNode.getTranslateX() > headNode.getTranslateX() + headNode.getWidth()) {  //If headNode is west of tailNode:
-            if(Math.abs(tailNode.getTranslateY() + (tailNode.getHeight()/2) - (headNode.getTranslateY() + (headNode.getHeight()/2))) < 0){
+            if (Math.abs(tailNode.getTranslateY() + (tailNode.getHeight() / 2) - (headNode.getTranslateY() + (headNode.getHeight() / 2))) < 0) {
                 tailLine.setStartX(tailNode.getTranslateX());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
                 tailLine.setEndX(headNode.getTranslateX() + headNode.getWidth());
@@ -337,26 +341,26 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
             } else {
                 tailLine.setStartX(tailNode.getTranslateX());
                 tailLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
-                tailLine.setEndX(headNode.getTranslateX() + headNode.getWidth()  + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth()))/2));
+                tailLine.setEndX(headNode.getTranslateX() + headNode.getWidth() + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth())) / 2));
                 tailLine.setEndY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
 
-                middleLine.setStartX(headNode.getTranslateX() + headNode.getWidth()  + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth()))/2));
+                middleLine.setStartX(headNode.getTranslateX() + headNode.getWidth() + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth())) / 2));
                 middleLine.setStartY(tailNode.getTranslateY() + (tailNode.getHeight() / 2));
-                middleLine.setEndX(headNode.getTranslateX() + headNode.getWidth()  + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth()))/2));
+                middleLine.setEndX(headNode.getTranslateX() + headNode.getWidth() + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth())) / 2));
                 middleLine.setEndY(headNode.getTranslateY() + (headNode.getHeight() / 2));
 
-                headLine.setStartX(headNode.getTranslateX() + headNode.getWidth()  + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth()))/2));
+                headLine.setStartX(headNode.getTranslateX() + headNode.getWidth() + ((tailNode.getTranslateX() - (headNode.getTranslateX() + headNode.getWidth())) / 2));
                 headLine.setStartY(headNode.getTranslateY() + (headNode.getHeight() / 2));
                 headLine.setEndX(headNode.getTranslateX() + headNode.getWidth());
                 headLine.setEndY(headNode.getTranslateY() + (headNode.getHeight() / 2));
             }
 
             side = Side.WEST;
-        } else if (tailNode.getTranslateY() + tailNode.getHeight() < headNode.getTranslateY()){ // If headNode is south of tailNode:
-            if(Math.abs(tailNode.getTranslateX() + (tailNode.getWidth()/2) - (headNode.getTranslateX() + (headNode.getWidth()/2))) < 0){
-                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
+        } else if (tailNode.getTranslateY() + tailNode.getHeight() < headNode.getTranslateY()) { // If headNode is south of tailNode:
+            if (Math.abs(tailNode.getTranslateX() + (tailNode.getWidth() / 2) - (headNode.getTranslateX() + (headNode.getWidth() / 2))) < 0) {
+                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
                 tailLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight());
-                tailLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
+                tailLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
                 tailLine.setEndY(headNode.getTranslateY());
 
                 middleLine.setStartX(0);
@@ -369,28 +373,28 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
                 headLine.setEndX(0);
                 headLine.setEndY(0);
             } else {
-                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
+                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
                 tailLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight());
-                tailLine.setEndX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
-                tailLine.setEndY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight()))/2));
+                tailLine.setEndX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
+                tailLine.setEndY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight())) / 2));
 
-                middleLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
-                middleLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight()))/2));
-                middleLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
-                middleLine.setEndY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight()))/2));
+                middleLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
+                middleLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight())) / 2));
+                middleLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
+                middleLine.setEndY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight())) / 2));
 
-                headLine.setStartX(headNode.getTranslateX() + (headNode.getWidth()/2));
-                headLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight()))/2));
-                headLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
+                headLine.setStartX(headNode.getTranslateX() + (headNode.getWidth() / 2));
+                headLine.setStartY(tailNode.getTranslateY() + tailNode.getHeight() + ((headNode.getTranslateY() - (tailNode.getTranslateY() + tailNode.getHeight())) / 2));
+                headLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
                 headLine.setEndY(headNode.getTranslateY());
             }
 
             side = Side.SOUTH;
         } else if (tailNode.getTranslateY() >= headNode.getTranslateY() + headNode.getHeight()) {  //If headNode is north of tailNode:
-            if(Math.abs(tailNode.getTranslateX() + (tailNode.getWidth()/2) - (headNode.getTranslateX() + (headNode.getWidth()/2))) < 0){
+            if (Math.abs(tailNode.getTranslateX() + (tailNode.getWidth() / 2) - (headNode.getTranslateX() + (headNode.getWidth() / 2))) < 0) {
                 tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
                 tailLine.setStartY(tailNode.getTranslateY());
-                tailLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
+                tailLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
                 tailLine.setEndY(headNode.getTranslateY() + headNode.getHeight());
 
                 middleLine.setStartX(0);
@@ -403,19 +407,19 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
                 headLine.setEndX(0);
                 headLine.setEndY(0);
             } else {
-                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
+                tailLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
                 tailLine.setStartY(tailNode.getTranslateY());
-                tailLine.setEndX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
-                tailLine.setEndY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight()))/2));
+                tailLine.setEndX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
+                tailLine.setEndY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight())) / 2));
 
-                middleLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() /2));
-                middleLine.setStartY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight()))/2));
-                middleLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
-                middleLine.setEndY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight()))/2));
+                middleLine.setStartX(tailNode.getTranslateX() + (tailNode.getWidth() / 2));
+                middleLine.setStartY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight())) / 2));
+                middleLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
+                middleLine.setEndY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight())) / 2));
 
-                headLine.setStartX(headNode.getTranslateX() + (headNode.getWidth()/2));
-                headLine.setStartY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight()))/2));
-                headLine.setEndX(headNode.getTranslateX() + (headNode.getWidth()/2));
+                headLine.setStartX(headNode.getTranslateX() + (headNode.getWidth() / 2));
+                headLine.setStartY(headNode.getTranslateY() + headNode.getHeight() + ((tailNode.getTranslateY() - (headNode.getTranslateY() + headNode.getHeight())) / 2));
+                headLine.setEndX(headNode.getTranslateX() + (headNode.getWidth() / 2));
                 headLine.setEndY(headNode.getTranslateY() + headNode.getHeight());
             }
 
@@ -542,16 +546,16 @@ public abstract class AbstractEdgeView extends Group implements UmlEdgeView {
     @Override
     public void setSelected(boolean selected) {
         this.selected.set(selected);
-        if (selected){
-            headLine.setStroke(Color.RED);
-            middleLine.setStroke(Color.RED);
-            tailLine.setStroke(Color.RED);
-            shapeLines.forEach(line -> line.setStroke(Color.RED));
+        if (selected) {
+            headLine.strokeProperty().bind(Theme.getDefaultTheme().selectedColorProperty());
+            middleLine.strokeProperty().bind(Theme.getDefaultTheme().selectedColorProperty());
+            tailLine.strokeProperty().bind(Theme.getDefaultTheme().selectedColorProperty());
+            shapeLines.forEach(line -> line.strokeProperty().bind(Theme.getDefaultTheme().selectedColorProperty()));
         } else {
-            headLine.setStroke(Color.BLACK);
-            middleLine.setStroke(Color.BLACK);
-            tailLine.setStroke(Color.BLACK);
-            shapeLines.forEach(line -> line.setStroke(Color.BLACK));
+            headLine.strokeProperty().bind(Theme.getDefaultTheme().strokeColorProperty());
+            middleLine.strokeProperty().bind(Theme.getDefaultTheme().strokeColorProperty());
+            tailLine.strokeProperty().bind(Theme.getDefaultTheme().strokeColorProperty());
+            shapeLines.forEach(line -> line.strokeProperty().bind(Theme.getDefaultTheme().strokeColorProperty()));
         }
     }
 
