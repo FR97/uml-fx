@@ -53,7 +53,6 @@ public abstract class AbstractDiagram implements UmlDiagram {
         return edges;
     }
 
-
     @Override
     public String getId() {
         return id;
